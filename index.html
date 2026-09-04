@@ -35,11 +35,11 @@
             align-items: center;
         }
 
-        .brand-logo {
+        .brand-logo, .brand-logo:visited, .brand-logo:hover, .brand-logo:active {
             display: flex;
             align-items: center;
             gap: 18px;
-            text-decoration: none;
+            text-decoration: none !important;
             color: #0F172A;
         }
 
@@ -63,6 +63,15 @@
         .brand-name-wealth {
             font-weight: 300;
             opacity: 0.65;
+        }
+
+        /* Custom Trimmed Slash for 'WEA\TH' */
+        .brand-slash {
+            font-weight: 700;
+            color: #0F172A;
+            display: inline-block;
+            transform: scaleY(0.88) translateY(-1px);
+            margin: 0 -1px;
         }
 
         /* Center Statement */
@@ -142,7 +151,7 @@
                 <circle cx="20" cy="22" r="2.5" fill="#0F172A"/>
             </svg>
             <span class="brand-name">
-                <span class="brand-name-atlas">ATLAS</span><span class="brand-name-wealth">WEALTH</span>
+                <span class="brand-name-atlas">ATLAS</span><span class="brand-name-wealth">WEA<span class="brand-slash">\</span>TH</span>
             </span>
         </div>
     </header>
