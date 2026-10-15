@@ -2,7 +2,7 @@
 """Recompute portfolio returns from adjusted closes.
 
 Reads holdings, start dates, and start weights in data/portfolios.json.
-Writes total return, CAGR, each holding's return, and as_of.
+Writes year-to-date return, total return, CAGR, each holding's return, and as_of.
 """
 
 from __future__ import annotations
@@ -128,9 +128,12 @@ def refresh(payload: dict) -> dict:
                 holding.setdefault("start_weight", weight)
 
         start_day = parse_start(portfolio["start"])
+        year_end = date(as_of_day.year - 1, 12, 31)
         weighted = 0.0
         weight_sum = 0.0
         book_start = None
+        base_values: list[float] = []
+        ytd_returns: list[float] = []
         for holding in holdings:
             ticker = holding["ticker"]
             series = closes[ticker]
@@ -143,12 +146,27 @@ def refresh(payload: dict) -> dict:
             weighted += weight * (holding["return_pct"] / 100.0)
             weight_sum += weight
             book_start = first_day if book_start is None else max(book_start, first_day)
+            if first_day > year_end:
+                base_px = first_px
+                base_value = weight
+            else:
+                _base_day, base_px = price_on_or_before(series, year_end, ticker)
+                if base_px <= 0:
+                    raise SystemExit(f"Invalid close for {ticker}.")
+                base_value = weight * (base_px / first_px)
+            base_values.append(base_value)
+            ytd_returns.append(last_px / base_px - 1.0)
 
         if not weight_sum or book_start is None or as_of_day <= book_start:
             raise SystemExit(f"Could not price {portfolio.get('id', portfolio.get('name'))}.")
+        base_sum = sum(base_values)
+        if not base_sum:
+            raise SystemExit(f"Could not price {portfolio.get('id', portfolio.get('name'))}.")
         total = weighted / weight_sum
+        ytd = sum((value / base_sum) * ret for value, ret in zip(base_values, ytd_returns))
         years = (as_of_day - book_start).days / 365.25
         cagr = (1.0 + total) ** (1.0 / years) - 1.0
+        portfolio["ytd_pct"] = round1(ytd * 100.0)
         portfolio["total_return_pct"] = round1(total * 100.0)
         portfolio["cagr_pct"] = round1(cagr * 100.0)
         portfolio["end"] = as_of_day.isoformat()
@@ -163,7 +181,11 @@ def main() -> None:
     DATA_PATH.write_text(json.dumps(updated, indent=2, ensure_ascii=False) + "\n")
     print(f"Updated {DATA_PATH} as of {updated['as_of']}")
     for portfolio in updated["portfolios"]:
-        print(f"{portfolio['id']}: {portfolio['total_return_pct']}% total, {portfolio['cagr_pct']}% CAGR")
+        print(
+            f"{portfolio['id']}: {portfolio['ytd_pct']}% YTD, "
+            f"{portfolio['total_return_pct']}% since inception, "
+            f"{portfolio['cagr_pct']}% annualized"
+        )
 
 
 if __name__ == "__main__":

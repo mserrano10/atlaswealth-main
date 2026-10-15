@@ -117,37 +117,50 @@
         }
 
         .c-ret {
-            font-size: 44pt;
+            font-size: 22pt;
             font-weight: 700;
-            letter-spacing: -2px;
+            letter-spacing: -0.5px;
             line-height: 1.15;
             color: #0F172A;
         }
 
-        .c-meta {
-            margin-top: 8px;
-            font-size: 8.5pt;
-            color: #94A3B8;
-        }
-
-        .detail-criteria {
-            max-width: 680px;
-            margin-top: 28px;
-        }
-
-        .detail-start {
-            margin-top: 10px;
-            font-size: 11pt;
-            color: #475569;
-        }
-
-        .k {
-            display: inline-block;
-            margin-right: 8px;
+        .c-label {
+            margin-top: 6px;
             font-size: 8.5pt;
             font-weight: 600;
             letter-spacing: 1.2px;
             text-transform: uppercase;
+            color: #94A3B8;
+        }
+
+        .metric-line {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 16px;
+            max-width: 420px;
+            margin-top: 10px;
+            font-size: 11pt;
+            line-height: 1.4;
+        }
+
+        .c-label + .metric-line {
+            margin-top: 18px;
+        }
+
+        .metric-k {
+            color: #475569;
+        }
+
+        .metric-v {
+            color: #0F172A;
+            font-weight: 600;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .c-inception {
+            margin-top: 10px;
+            font-size: 8.5pt;
             color: #94A3B8;
         }
 
@@ -228,7 +241,7 @@
             .headline { font-size: 17pt; }
             .brand-mark { width: 36px; height: 36px; }
             .brand-name { font-size: 14pt; letter-spacing: 3px; }
-            .c-ret { font-size: 30pt; }
+            .c-ret { font-size: 17pt; }
             .detail-main { margin-top: 48px; }
             footer { flex-direction: column; align-items: flex-start; gap: 16px; }
             .nav-links { flex-direction: column; gap: 12px; }
@@ -276,10 +289,7 @@
         <main class="detail-main">
             <a class="scroll-cue" href="index.html#performance">← Portfolio performance</a>
             <h1 class="headline" id="name"></h1>
-            <div class="c-ret" id="total"></div>
-            <div class="c-meta" id="summary"></div>
-            <p class="sub-headline detail-criteria" id="criteria"></p>
-            <p class="detail-start" id="started"></p>
+            <div id="metrics"></div>
             <div class="holdings" id="holdings"></div>
         </main>
 
@@ -312,22 +322,21 @@
             return digits;
         }
 
-        function formatCagr(value) {
-            var n = Number(value);
-            var digits = Math.abs(n).toFixed(1) + '%';
-            if (n < 0) return '-' + digits;
-            return digits;
-        }
-
         function formatWeight(fraction) {
             return (Number(fraction) * 100).toFixed(1) + '%';
         }
 
-        function formatStart(iso) {
+        function formatInception(iso) {
             var parts = String(iso).split('-');
             var month = MONTHS[Number(parts[1]) - 1] || parts[1];
-            if (parts.length < 3) return month + ' ' + parts[0];
-            return Number(parts[2]) + ' ' + month + ' ' + parts[0];
+            return month + ' ' + parts[0];
+        }
+
+        function metricLine(label, value) {
+            var line = el('div', 'metric-line');
+            line.appendChild(el('span', 'metric-k', label));
+            line.appendChild(el('span', 'metric-v', value));
+            return line;
         }
 
         function currentWeights(holdings) {
@@ -353,13 +362,13 @@
         function render(portfolio) {
             document.title = portfolio.name + ' · Atlas Wealth';
             document.getElementById('name').textContent = portfolio.name;
-            document.getElementById('total').textContent = formatTotal(portfolio.total_return_pct);
-            document.getElementById('summary').textContent = 'Total return · ' + formatCagr(portfolio.cagr_pct) + ' CAGR';
-            document.getElementById('criteria').textContent = portfolio.criteria || '';
-            var started = document.getElementById('started');
-            started.replaceChildren();
-            started.appendChild(el('span', 'k', 'Start'));
-            started.appendChild(document.createTextNode(formatStart(portfolio.start)));
+            var metrics = document.getElementById('metrics');
+            metrics.replaceChildren();
+            metrics.appendChild(el('div', 'c-ret', formatTotal(portfolio.ytd_pct)));
+            metrics.appendChild(el('div', 'c-label', 'YTD'));
+            metrics.appendChild(metricLine('Since inception', formatTotal(portfolio.total_return_pct)));
+            metrics.appendChild(metricLine('Annualized', formatTotal(portfolio.cagr_pct)));
+            metrics.appendChild(el('div', 'c-inception', 'Inception ' + formatInception(portfolio.start)));
 
             var holdings = portfolio.holdings || [];
             var drifted = currentWeights(holdings);
@@ -387,7 +396,7 @@
 
         function showMessage(text) {
             document.getElementById('name').textContent = 'Portfolio';
-            document.getElementById('criteria').textContent = text;
+            document.getElementById('metrics').textContent = text;
         }
 
         var params = new URLSearchParams(window.location.search);
