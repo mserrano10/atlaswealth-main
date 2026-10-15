@@ -215,6 +215,14 @@
             background-color: #F3F1EB;
         }
 
+        /* Laptop Chrome: keep the statement centered on the full screen,
+           and let the band cover the bottom 140px so its edge and heading show. */
+        @media (min-width: 641px) {
+            .poster:not(.two) {
+                margin-bottom: -140px;
+            }
+        }
+
         .p2-intro {
             max-width: 680px;
             margin-bottom: 12px;
