@@ -167,6 +167,12 @@
             border-top: 1px solid #E2E8F0;
         }
 
+        .as-of {
+            margin-top: 24px;
+            font-size: 8.5pt;
+            color: #94A3B8;
+        }
+
         .h-row {
             display: grid;
             grid-template-columns: 1.4fr 1fr 1fr 1fr;
@@ -211,6 +217,7 @@
 
         .nav-links {
             display: flex;
+            align-items: center;
             gap: 32px;
         }
 
@@ -223,12 +230,31 @@
             transition: opacity 0.2s ease;
         }
 
-        .nav-link:hover {
+        .nav-link:hover:not(.partner-btn) {
             opacity: 0.6;
         }
 
         .contact-link {
             color: #0F172A;
+        }
+
+        .partner-btn,
+        .partner-btn:visited,
+        .partner-btn:active {
+            opacity: 1;
+            padding: 8px 14px;
+            border: 1px solid #0F172A;
+            border-radius: 4px;
+            line-height: 1;
+            color: #0F172A;
+            background-color: transparent;
+            transition: none;
+        }
+
+        .partner-btn:hover {
+            opacity: 1;
+            background-color: #0F172A;
+            color: #ffffff;
         }
 
         .copyright {
@@ -249,7 +275,7 @@
             .c-ret { font-size: 17pt; }
             .detail-main { margin-top: 48px; }
             footer { flex-direction: column; align-items: flex-start; gap: 16px; }
-            .nav-links { flex-direction: column; gap: 12px; }
+            .nav-links { flex-direction: column; align-items: flex-start; gap: 12px; }
             .h-head { display: none; }
             .h-row {
                 grid-template-columns: 1fr auto;
@@ -291,7 +317,7 @@
             </a>
             <nav class="nav-links" aria-label="Primary">
                 <a href="https://strategy.atlaswealth.cc" class="nav-link">Research Repository & Portal →</a>
-                <a href="mailto:investors@atlaswealth.cc" class="nav-link contact-link">Partner Inquiries</a>
+                <a href="mailto:investors@atlaswealth.cc" class="nav-link partner-btn">Partner inquiries →</a>
             </nav>
         </header>
 
@@ -300,6 +326,7 @@
             <h1 class="headline" id="name"></h1>
             <div id="metrics"></div>
             <div class="holdings" id="holdings"></div>
+            <p class="as-of" id="as-of">Past performance is not indicative of future results.</p>
         </main>
 
         <footer>
@@ -319,6 +346,20 @@
             if (className) node.className = className;
             if (text != null) node.textContent = text;
             return node;
+        }
+
+        var MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+        function formatAsOf(iso) {
+            var parts = String(iso).split('-');
+            var month = MONTHS[Number(parts[1]) - 1] || '';
+            return month + ' ' + Number(parts[2]) + ', ' + parts[0];
+        }
+
+        function renderAsOf(iso) {
+            var node = document.getElementById('as-of');
+            if (!node || !iso) return;
+            node.textContent = 'As of ' + formatAsOf(iso) + ' close · Past performance is not indicative of future results.';
         }
 
         function formatTotal(value) {
@@ -365,10 +406,10 @@
             document.getElementById('name').textContent = portfolio.name;
             var metrics = document.getElementById('metrics');
             metrics.replaceChildren();
-            metrics.appendChild(el('div', 'c-ret', formatTotal(portfolio.ytd_pct)));
-            metrics.appendChild(el('div', 'c-label', 'YTD'));
-            metrics.appendChild(metricLine('Since inception', formatTotal(portfolio.total_return_pct)));
+            metrics.appendChild(el('div', 'c-ret', formatTotal(portfolio.total_return_pct)));
+            metrics.appendChild(el('div', 'c-label', 'Since inception'));
             metrics.appendChild(metricLine('Annualized', formatTotal(portfolio.cagr_pct)));
+            metrics.appendChild(metricLine('YTD', formatTotal(portfolio.ytd_pct)));
 
             var holdings = portfolio.holdings || [];
             var drifted = currentWeights(holdings);
@@ -408,6 +449,7 @@
                 return response.json();
             })
             .then(function (data) {
+                renderAsOf(data.as_of);
                 var match = (data.portfolios || []).filter(function (portfolio) {
                     return String(portfolio.id).toLowerCase() === id;
                 })[0];
