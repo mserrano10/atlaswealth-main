@@ -33,4 +33,4 @@ python scripts/update_portfolios.py
 
 A GitHub Actions workflow runs that script every weekday at 21:30 UTC and commits `data/portfolios.json` when the figures change.
 
-MMXXV·C stores a start weight on each holding and uses the 16 April 2025 close. An equal-weight approximation is acceptable for that book, and it is what the refresh script applies.
+MMXXV·C reads trades from [`data/lots/mmxxv_c.json`](data/lots/mmxxv_c.json). Each lot is a ticker, a trade date, and a percent of invested capital (negative for a partial sale). The refresh script divides that percent by the adjusted close to get units, carries the cumulative units, and values the book each session. Cash added or removed that day is taken out of the daily change, and those daily returns are chained. Since inception is the chain minus one. Annualized is `(1 + since inception) ^ (365.25 / days) - 1`. Year-to-date is the same chain from the last close of the prior year. Detail-page weights are the current market value of each holding.
