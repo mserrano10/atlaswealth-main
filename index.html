@@ -285,6 +285,11 @@
             color: #94A3B8;
         }
 
+        .band-link {
+            align-self: flex-start;
+            margin-top: 60px;
+        }
+
         .p2-foot {
             padding-top: 60px;
             font-size: 8.5pt;
@@ -310,8 +315,18 @@
             }
             .card + .card::before { content: none; }
             .card-row .card:first-child { border-top: none; }
+            .band-link { margin-top: 36px; }
             .p2-foot { padding-top: 36px; }
             .c-ret { font-size: 17pt; }
+        }
+
+        @media (max-width: 600px) {
+            .scroll-cue,
+            .scroll-cue:visited,
+            .scroll-cue:hover,
+            .scroll-cue:active {
+                display: none;
+            }
         }
     </style>
 </head>
@@ -355,6 +370,7 @@
         <div id="cards">
             <noscript><p class="c-meta">Enable JavaScript to load portfolio performance.</p></noscript>
         </div>
+        <a class="nav-link band-link" href="https://strategy.atlaswealth.cc">See the strategies behind these portfolios →</a>
         <p class="p2-foot">Updated at close · Past performance is not indicative of future results.</p>
     </section>
 
