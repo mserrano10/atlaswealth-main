@@ -28,11 +28,14 @@
         header {
             display: flex;
             align-items: center;
+            justify-content: space-between;
+            gap: 20px 32px;
         }
 
         .brand-logo, .brand-logo:visited, .brand-logo:hover, .brand-logo:active {
             display: flex;
             align-items: center;
+            flex-shrink: 0;
             gap: 18px;
             text-decoration: none !important;
             color: #0F172A;
@@ -48,6 +51,7 @@
             letter-spacing: 4px;
             text-transform: uppercase;
             color: #0F172A;
+            white-space: nowrap;
         }
 
         .brand-name-atlas {
@@ -158,12 +162,6 @@
             font-variant-numeric: tabular-nums;
         }
 
-        .c-inception {
-            margin-top: 10px;
-            font-size: 8.5pt;
-            color: #94A3B8;
-        }
-
         .holdings {
             margin-top: 48px;
             border-top: 1px solid #E2E8F0;
@@ -205,6 +203,7 @@
             display: flex;
             justify-content: space-between;
             align-items: flex-end;
+            gap: 16px 32px;
             border-top: 1px solid #E2E8F0;
             padding-top: 24px;
             margin-top: auto;
@@ -220,6 +219,7 @@
             font-weight: 600;
             color: #0F172A;
             text-decoration: none;
+            white-space: nowrap;
             transition: opacity 0.2s ease;
         }
 
@@ -236,11 +236,16 @@
             color: #94A3B8;
         }
 
+        @media (max-width: 800px) {
+            header { flex-direction: column; align-items: flex-start; gap: 20px; }
+        }
+
         @media (max-width: 640px) {
             .poster { padding: 36px 24px; }
             .headline { font-size: 17pt; }
             .brand-mark { width: 36px; height: 36px; }
             .brand-name { font-size: 14pt; letter-spacing: 3px; }
+            header { flex-direction: column; align-items: flex-start; gap: 20px; }
             .c-ret { font-size: 17pt; }
             .detail-main { margin-top: 48px; }
             footer { flex-direction: column; align-items: flex-start; gap: 16px; }
@@ -284,6 +289,10 @@
                     <span class="brand-name-atlas">ATLAS</span><span class="brand-name-wealth">WEA<span class="brand-slash">\</span>TH</span>
                 </span>
             </a>
+            <nav class="nav-links" aria-label="Primary">
+                <a href="https://strategy.atlaswealth.cc" class="nav-link">Research Repository & Portal →</a>
+                <a href="mailto:investors@atlaswealth.cc" class="nav-link contact-link">Partner Inquiries</a>
+            </nav>
         </header>
 
         <main class="detail-main">
@@ -294,10 +303,10 @@
         </main>
 
         <footer>
-            <div class="nav-links">
+            <nav class="nav-links" aria-label="Footer">
                 <a href="https://strategy.atlaswealth.cc" class="nav-link">Research Repository & Portal →</a>
                 <a href="mailto:investors@atlaswealth.cc" class="nav-link contact-link">Partner Inquiries</a>
-            </div>
+            </nav>
             <div class="copyright">
                 © Atlas Capital Research. Confidential Policy Portal.
             </div>
@@ -305,8 +314,6 @@
     </section>
 
     <script>
-        var MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-
         function el(tag, className, text) {
             var node = document.createElement(tag);
             if (className) node.className = className;
@@ -324,12 +331,6 @@
 
         function formatWeight(fraction) {
             return (Number(fraction) * 100).toFixed(1) + '%';
-        }
-
-        function formatInception(iso) {
-            var parts = String(iso).split('-');
-            var month = MONTHS[Number(parts[1]) - 1] || parts[1];
-            return month + ' ' + parts[0];
         }
 
         function metricLine(label, value) {
@@ -368,7 +369,6 @@
             metrics.appendChild(el('div', 'c-label', 'YTD'));
             metrics.appendChild(metricLine('Since inception', formatTotal(portfolio.total_return_pct)));
             metrics.appendChild(metricLine('Annualized', formatTotal(portfolio.cagr_pct)));
-            metrics.appendChild(el('div', 'c-inception', 'Inception ' + formatInception(portfolio.start)));
 
             var holdings = portfolio.holdings || [];
             var drifted = currentWeights(holdings);

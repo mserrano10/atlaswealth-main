@@ -33,11 +33,14 @@
         header {
             display: flex;
             align-items: center;
+            justify-content: space-between;
+            gap: 20px 32px;
         }
 
         .brand-logo, .brand-logo:visited, .brand-logo:hover, .brand-logo:active {
             display: flex;
             align-items: center;
+            flex-shrink: 0;
             gap: 18px;
             text-decoration: none !important;
             color: #0F172A;
@@ -54,6 +57,7 @@
             letter-spacing: 4px;
             text-transform: uppercase;
             color: #0F172A;
+            white-space: nowrap;
         }
 
         .brand-name-atlas {
@@ -100,8 +104,10 @@
             display: flex;
             justify-content: space-between;
             align-items: flex-end;
+            gap: 16px 32px;
             border-top: 1px solid #E2E8F0;
-            padding-top: 24px;
+            padding: 24px 48px 60px;
+            background-color: #FAF9F6;
         }
 
         .nav-links {
@@ -114,6 +120,7 @@
             font-weight: 600;
             color: #0F172A;
             text-decoration: none;
+            white-space: nowrap;
             transition: opacity 0.2s ease;
         }
 
@@ -135,7 +142,13 @@
             .headline { font-size: 17pt; }
             .brand-mark { width: 36px; height: 36px; }
             .brand-name { font-size: 14pt; letter-spacing: 3px; }
-            footer { flex-direction: column; align-items: flex-start; gap: 16px; }
+            header { flex-direction: column; align-items: flex-start; gap: 20px; }
+            footer {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 16px;
+                padding: 24px 24px 36px;
+            }
             .nav-links { flex-direction: column; gap: 12px; }
         }
 
@@ -153,7 +166,7 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            justify-content: flex-start;
             padding: 60px 48px;
         }
 
@@ -178,6 +191,7 @@
             justify-content: flex-start;
             gap: 0;
             border-top: 1px solid #E2E8F0;
+            background-color: #F3F1EB;
         }
 
         .p2-intro {
@@ -259,12 +273,6 @@
             font-variant-numeric: tabular-nums;
         }
 
-        .c-inception {
-            margin-top: 10px;
-            font-size: 8.5pt;
-            color: #94A3B8;
-        }
-
         .c-meta {
             font-size: 8.5pt;
             color: #94A3B8;
@@ -275,6 +283,14 @@
             padding-top: 24px;
             font-size: 8.5pt;
             color: #94A3B8;
+        }
+
+        @media (max-width: 900px) {
+            .card-row { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 800px) {
+            header { flex-direction: column; align-items: flex-start; gap: 20px; }
         }
 
         @media (max-width: 640px) {
@@ -306,6 +322,10 @@
                     <span class="brand-name-atlas">ATLAS</span><span class="brand-name-wealth">WEA<span class="brand-slash">\</span>TH</span>
                 </span>
             </div>
+            <nav class="nav-links" aria-label="Primary">
+                <a href="https://strategy.atlaswealth.cc" class="nav-link">Research Repository & Portal →</a>
+                <a href="mailto:investors@atlaswealth.cc" class="nav-link contact-link">Partner Inquiries</a>
+            </nav>
         </header>
 
         <main>
@@ -317,16 +337,6 @@
             </div>
             <a class="scroll-cue" href="#performance" aria-label="Portfolio performance">↓</a>
         </main>
-
-        <footer>
-            <div class="nav-links">
-                <a href="https://strategy.atlaswealth.cc" class="nav-link">Research Repository & Portal →</a>
-                <a href="mailto:investors@atlaswealth.cc" class="nav-link contact-link">Partner Inquiries</a>
-            </div>
-            <div class="copyright">
-                © Atlas Capital Research. Confidential Policy Portal.
-            </div>
-        </footer>
     </section>
 
     <section class="poster two" id="performance">
@@ -339,6 +349,16 @@
         </div>
         <p class="p2-foot">Updated at close · Past performance is not indicative of future results.</p>
     </section>
+
+    <footer>
+        <nav class="nav-links" aria-label="Footer">
+            <a href="https://strategy.atlaswealth.cc" class="nav-link">Research Repository & Portal →</a>
+            <a href="mailto:investors@atlaswealth.cc" class="nav-link contact-link">Partner Inquiries</a>
+        </nav>
+        <div class="copyright">
+            © Atlas Capital Research. Confidential Policy Portal.
+        </div>
+    </footer>
 
     <script>
         function el(tag, className, text) {
@@ -356,14 +376,6 @@
             return digits;
         }
 
-        var MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-
-        function formatInception(iso) {
-            var parts = String(iso).split('-');
-            var month = MONTHS[Number(parts[1]) - 1] || parts[1];
-            return month + ' ' + parts[0];
-        }
-
         function metricLine(label, value) {
             var line = el('div', 'metric-line');
             line.appendChild(el('span', 'metric-k', label));
@@ -376,7 +388,6 @@
             parent.appendChild(el('div', 'c-label', 'YTD'));
             parent.appendChild(metricLine('Since inception', formatTotal(portfolio.total_return_pct)));
             parent.appendChild(metricLine('Annualized', formatTotal(portfolio.cagr_pct)));
-            parent.appendChild(el('div', 'c-inception', 'Inception ' + formatInception(portfolio.start)));
         }
 
         function cardNode(portfolio) {
@@ -387,17 +398,33 @@
             return card;
         }
 
+        var books = [];
+        var drawnColumns = 0;
+
+        function columnCount() {
+            if (window.matchMedia('(max-width: 640px)').matches) return 1;
+            if (window.matchMedia('(max-width: 900px)').matches) return 2;
+            return 3;
+        }
+
         function renderSequence(portfolios) {
+            var count = columnCount();
+            drawnColumns = count;
             var root = document.getElementById('cards');
             root.replaceChildren();
-            for (var i = 0; i < portfolios.length; i += 3) {
+            for (var i = 0; i < portfolios.length; i += count) {
                 var row = el('div', 'card-row');
-                portfolios.slice(i, i + 3).forEach(function (portfolio) {
+                portfolios.slice(i, i + count).forEach(function (portfolio) {
                     row.appendChild(cardNode(portfolio));
                 });
                 root.appendChild(row);
             }
         }
+
+        window.addEventListener('resize', function () {
+            if (!books.length || columnCount() === drawnColumns) return;
+            renderSequence(books);
+        });
 
         fetch('data/portfolios.json')
             .then(function (response) {
@@ -405,7 +432,8 @@
                 return response.json();
             })
             .then(function (data) {
-                renderSequence(data.portfolios || []);
+                books = data.portfolios || [];
+                renderSequence(books);
             })
             .catch(function () {
                 var root = document.getElementById('cards');
