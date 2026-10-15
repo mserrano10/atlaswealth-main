@@ -217,6 +217,7 @@
 
         .nav-links {
             display: flex;
+            align-items: center;
             gap: 32px;
         }
 
@@ -237,6 +238,23 @@
             color: #0F172A;
         }
 
+        .partner-btn,
+        .partner-btn:visited,
+        .partner-btn:active {
+            padding: 8px 14px;
+            border: 1px solid #0F172A;
+            border-radius: 4px;
+            line-height: 1;
+            background-color: transparent;
+            transition: background-color 0.2s ease, color 0.2s ease, opacity 0.2s ease;
+        }
+
+        .partner-btn:hover {
+            opacity: 1;
+            background-color: #0F172A;
+            color: #ffffff;
+        }
+
         .copyright {
             font-size: 8.5pt;
             color: #94A3B8;
@@ -255,7 +273,7 @@
             .c-ret { font-size: 17pt; }
             .detail-main { margin-top: 48px; }
             footer { flex-direction: column; align-items: flex-start; gap: 16px; }
-            .nav-links { flex-direction: column; gap: 12px; }
+            .nav-links { flex-direction: column; align-items: flex-start; gap: 12px; }
             .h-head { display: none; }
             .h-row {
                 grid-template-columns: 1fr auto;
@@ -297,7 +315,7 @@
             </a>
             <nav class="nav-links" aria-label="Primary">
                 <a href="https://strategy.atlaswealth.cc" class="nav-link">Research Repository & Portal →</a>
-                <a href="mailto:investors@atlaswealth.cc" class="nav-link contact-link">Partner Inquiries</a>
+                <a href="mailto:investors@atlaswealth.cc" class="nav-link partner-btn">Partner inquiries →</a>
             </nav>
         </header>
 
