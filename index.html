@@ -371,7 +371,7 @@
             <noscript><p class="c-meta">Enable JavaScript to load portfolio performance.</p></noscript>
         </div>
         <a class="nav-link band-link" href="https://strategy.atlaswealth.cc">See the strategies behind these portfolios →</a>
-        <p class="p2-foot">Updated at close · Past performance is not indicative of future results.</p>
+        <p class="p2-foot" id="as-of">Past performance is not indicative of future results.</p>
     </section>
 
     <footer>
@@ -392,6 +392,20 @@
             return node;
         }
 
+        var MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+        function formatAsOf(iso) {
+            var parts = String(iso).split('-');
+            var month = MONTHS[Number(parts[1]) - 1] || '';
+            return month + ' ' + Number(parts[2]) + ', ' + parts[0];
+        }
+
+        function renderAsOf(iso) {
+            var node = document.getElementById('as-of');
+            if (!node || !iso) return;
+            node.textContent = 'As of ' + formatAsOf(iso) + ' close · Past performance is not indicative of future results.';
+        }
+
         function formatTotal(value) {
             var n = Number(value);
             var digits = Math.abs(n).toFixed(1) + '%';
@@ -408,10 +422,10 @@
         }
 
         function appendMetrics(parent, portfolio) {
-            parent.appendChild(el('div', 'c-ret', formatTotal(portfolio.ytd_pct)));
-            parent.appendChild(el('div', 'c-label', 'YTD'));
-            parent.appendChild(metricLine('Since inception', formatTotal(portfolio.total_return_pct)));
+            parent.appendChild(el('div', 'c-ret', formatTotal(portfolio.total_return_pct)));
+            parent.appendChild(el('div', 'c-label', 'Since inception'));
             parent.appendChild(metricLine('Annualized', formatTotal(portfolio.cagr_pct)));
+            parent.appendChild(metricLine('YTD', formatTotal(portfolio.ytd_pct)));
         }
 
         function cardNode(portfolio) {
@@ -458,6 +472,7 @@
             .then(function (data) {
                 books = data.portfolios || [];
                 renderSequence(books);
+                renderAsOf(data.as_of);
             })
             .catch(function () {
                 var root = document.getElementById('cards');

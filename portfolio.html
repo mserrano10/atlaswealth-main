@@ -167,6 +167,12 @@
             border-top: 1px solid #E2E8F0;
         }
 
+        .as-of {
+            margin-top: 24px;
+            font-size: 8.5pt;
+            color: #94A3B8;
+        }
+
         .h-row {
             display: grid;
             grid-template-columns: 1.4fr 1fr 1fr 1fr;
@@ -300,6 +306,7 @@
             <h1 class="headline" id="name"></h1>
             <div id="metrics"></div>
             <div class="holdings" id="holdings"></div>
+            <p class="as-of" id="as-of">Past performance is not indicative of future results.</p>
         </main>
 
         <footer>
@@ -319,6 +326,20 @@
             if (className) node.className = className;
             if (text != null) node.textContent = text;
             return node;
+        }
+
+        var MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+        function formatAsOf(iso) {
+            var parts = String(iso).split('-');
+            var month = MONTHS[Number(parts[1]) - 1] || '';
+            return month + ' ' + Number(parts[2]) + ', ' + parts[0];
+        }
+
+        function renderAsOf(iso) {
+            var node = document.getElementById('as-of');
+            if (!node || !iso) return;
+            node.textContent = 'As of ' + formatAsOf(iso) + ' close · Past performance is not indicative of future results.';
         }
 
         function formatTotal(value) {
@@ -365,10 +386,10 @@
             document.getElementById('name').textContent = portfolio.name;
             var metrics = document.getElementById('metrics');
             metrics.replaceChildren();
-            metrics.appendChild(el('div', 'c-ret', formatTotal(portfolio.ytd_pct)));
-            metrics.appendChild(el('div', 'c-label', 'YTD'));
-            metrics.appendChild(metricLine('Since inception', formatTotal(portfolio.total_return_pct)));
+            metrics.appendChild(el('div', 'c-ret', formatTotal(portfolio.total_return_pct)));
+            metrics.appendChild(el('div', 'c-label', 'Since inception'));
             metrics.appendChild(metricLine('Annualized', formatTotal(portfolio.cagr_pct)));
+            metrics.appendChild(metricLine('YTD', formatTotal(portfolio.ytd_pct)));
 
             var holdings = portfolio.holdings || [];
             var drifted = currentWeights(holdings);
@@ -408,6 +429,7 @@
                 return response.json();
             })
             .then(function (data) {
+                renderAsOf(data.as_of);
                 var match = (data.portfolios || []).filter(function (portfolio) {
                     return String(portfolio.id).toLowerCase() === id;
                 })[0];
