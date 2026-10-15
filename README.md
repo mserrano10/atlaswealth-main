@@ -1,17 +1,34 @@
 # atlaswealth-main
 Main website atlas wealth repository
 
-## Adding a portfolio cohort
+## Portfolios
 
-The Portfolio Performance page reads [`data/portfolios.json`](data/portfolios.json).
+The landing page reads [`data/portfolios.json`](data/portfolios.json) and lists each portfolio, in order, as a card. A card links to `portfolio.html?id=<id>`.
 
-To add a yearly cohort, append an object to the `cohorts` array:
+To add a portfolio, append an object to the `portfolios` array:
 
 ```json
 {
-  "year": 2026,
-  "portfolios": []
+  "id": "sextus",
+  "name": "Sextus",
+  "screen": "ROIC > 40%",
+  "criteria": "Equal weight at the start of Jan 2026, companies with ROIC > 40%",
+  "start": "2026-01-02",
+  "holdings": [
+    { "ticker": "AAPL", "start_weight": 0.5 },
+    { "ticker": "MSFT", "start_weight": 0.5 }
+  ]
 }
 ```
 
-Each portfolio needs `name`, `criteria`, `start` (`YYYY-MM`), `end`, `total_return_pct`, `cagr_pct`, and `holdings`. A holding is `{ "ticker": "AAPL" }` and may include `return_pct` when that holding's return is shown. Update `as_of` (`YYYY-MM-DD`) when the figures change.
+`screen` stores the original screen. `criteria` is the sentence shown on the detail page. `start` is the first close (`YYYY-MM-DD`). `start_weight` is the weight at that close; omit it to treat the book as equal weight.
+
+`scripts/update_portfolios.py` recomputes each holding's return, plus total return and CAGR, from adjusted closes and updates `as_of`. Install the dependency with `pip install -r requirements.txt`, then run:
+
+```bash
+python scripts/update_portfolios.py
+```
+
+A GitHub Actions workflow runs that script every weekday at 21:30 UTC and commits `data/portfolios.json` when the figures change.
+
+Quintus stores a start weight on each holding and uses the 16 April 2025 close. An equal-weight approximation is acceptable for that book, and it is what the refresh script applies.

@@ -1,0 +1,40 @@
+name: Update portfolio returns
+
+on:
+  schedule:
+    # Weekdays at 21:30 UTC, after the US cash close.
+    - cron: "30 21 * * 1-5"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Recompute returns
+        run: python scripts/update_portfolios.py
+
+      - name: Commit updated figures
+        run: |
+          if git diff --quiet -- data/portfolios.json; then
+            echo "No change in portfolio figures."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/portfolios.json
+          git commit -m "Update portfolio returns"
+          git push

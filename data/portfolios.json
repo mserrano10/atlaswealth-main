@@ -1,303 +1,379 @@
 {
   "as_of": "2026-10-14",
-  "method": "Equal weight at the first trading day's close, buy and hold, dividends reinvested (adjusted closes). Quality Compounders 2025: time-weighted return from its April 2025 start.",
-  "cohorts": [
+  "method": "Equal weight at the first trading day's close, buy and hold, dividends reinvested (adjusted closes).",
+  "portfolios": [
     {
-      "year": 2024,
-      "portfolios": [
+      "id": "primus",
+      "name": "Primus",
+      "screen": "ROIC > 50%",
+      "criteria": "Equal weight at the start of Jan 2024, companies with ROIC > 50%",
+      "start": "2024-01-02",
+      "end": "2026-10-14",
+      "total_return_pct": 54.5,
+      "cagr_pct": 16.9,
+      "holdings": [
         {
-          "name": "Rockstar S&P 500 '24",
-          "criteria": "ROIC > 50%",
-          "start": "2024-01",
-          "end": "2026-10-14",
-          "total_return_pct": 54.5,
-          "cagr_pct": 16.9,
-          "holdings": [
-            {
-              "ticker": "MCK",
-              "return_pct": 108.7
-            },
-            {
-              "ticker": "DPZ",
-              "return_pct": -25.0
-            },
-            {
-              "ticker": "AMP",
-              "return_pct": 35.6
-            },
-            {
-              "ticker": "MA",
-              "return_pct": 45.6
-            },
-            {
-              "ticker": "OTIS",
-              "return_pct": -17.8
-            },
-            {
-              "ticker": "CAH",
-              "return_pct": 150.7
-            },
-            {
-              "ticker": "ADP",
-              "return_pct": 28.3
-            },
-            {
-              "ticker": "MPWR",
-              "return_pct": 110.0
-            }
-          ]
+          "ticker": "MCK",
+          "start_weight": 0.125,
+          "return_pct": 108.7
         },
         {
-          "name": "Top Performers S&P 500 '24",
-          "criteria": "ROIC > 37.5%",
-          "start": "2024-01",
-          "end": "2026-10-14",
-          "total_return_pct": 44.9,
-          "cagr_pct": 14.2,
-          "holdings": [
-            {
-              "ticker": "MCK",
-              "return_pct": 108.7
-            },
-            {
-              "ticker": "DPZ",
-              "return_pct": -25.0
-            },
-            {
-              "ticker": "AMP",
-              "return_pct": 35.6
-            },
-            {
-              "ticker": "BKNG",
-              "return_pct": 18.1
-            },
-            {
-              "ticker": "MO",
-              "return_pct": 114.6
-            },
-            {
-              "ticker": "OTIS",
-              "return_pct": -17.8
-            },
-            {
-              "ticker": "MTD",
-              "return_pct": 32.5
-            },
-            {
-              "ticker": "YUM",
-              "return_pct": 19.9
-            },
-            {
-              "ticker": "CAH",
-              "return_pct": 150.7
-            },
-            {
-              "ticker": "ORLY",
-              "return_pct": 37.6
-            },
-            {
-              "ticker": "COR",
-              "return_pct": 64.9
-            },
-            {
-              "ticker": "ADP",
-              "return_pct": 28.3
-            },
-            {
-              "ticker": "LII",
-              "return_pct": -18.8
-            },
-            {
-              "ticker": "AZO",
-              "return_pct": 13.4
-            },
-            {
-              "ticker": "MPWR",
-              "return_pct": 110.0
-            }
-          ]
+          "ticker": "DPZ",
+          "start_weight": 0.125,
+          "return_pct": -25.0
+        },
+        {
+          "ticker": "AMP",
+          "start_weight": 0.125,
+          "return_pct": 35.6
+        },
+        {
+          "ticker": "MA",
+          "start_weight": 0.125,
+          "return_pct": 45.6
+        },
+        {
+          "ticker": "OTIS",
+          "start_weight": 0.125,
+          "return_pct": -17.8
+        },
+        {
+          "ticker": "CAH",
+          "start_weight": 0.125,
+          "return_pct": 150.7
+        },
+        {
+          "ticker": "ADP",
+          "start_weight": 0.125,
+          "return_pct": 28.3
+        },
+        {
+          "ticker": "MPWR",
+          "start_weight": 0.125,
+          "return_pct": 110.0
         }
       ]
     },
     {
-      "year": 2025,
-      "portfolios": [
+      "id": "secundus",
+      "name": "Secundus",
+      "screen": "ROIC > 37.5%",
+      "criteria": "Equal weight at the start of Jan 2024, companies with ROIC > 37.5%",
+      "start": "2024-01-02",
+      "end": "2026-10-14",
+      "total_return_pct": 44.8,
+      "cagr_pct": 14.2,
+      "holdings": [
         {
-          "name": "Rockstars '25",
-          "criteria": "High-ROIC screen",
-          "start": "2025-01",
-          "end": "2026-10-14",
-          "total_return_pct": 28.2,
-          "cagr_pct": 15.0,
-          "holdings": [
-            {
-              "ticker": "AMP",
-              "return_pct": -4.3
-            },
-            {
-              "ticker": "DPZ",
-              "return_pct": -29.7
-            },
-            {
-              "ticker": "BKNG",
-              "return_pct": -17.2
-            },
-            {
-              "ticker": "OTIS",
-              "return_pct": -22.5
-            },
-            {
-              "ticker": "YUM",
-              "return_pct": 13.6
-            },
-            {
-              "ticker": "MCK",
-              "return_pct": 73.7
-            },
-            {
-              "ticker": "MA",
-              "return_pct": 16.9
-            },
-            {
-              "ticker": "MTD",
-              "return_pct": 31.8
-            },
-            {
-              "ticker": "AAPL",
-              "return_pct": 41.7
-            },
-            {
-              "ticker": "FTNT",
-              "return_pct": 94.2
-            },
-            {
-              "ticker": "MPWR",
-              "return_pct": 112.0
-            }
-          ]
+          "ticker": "MCK",
+          "start_weight": 0.06666667,
+          "return_pct": 108.7
         },
         {
-          "name": "Top Performers '25",
-          "criteria": "High-ROIC screen",
-          "start": "2025-01",
-          "end": "2026-10-14",
-          "total_return_pct": 16.8,
-          "cagr_pct": 9.1,
-          "holdings": [
-            {
-              "ticker": "AMP",
-              "return_pct": -4.3
-            },
-            {
-              "ticker": "ADBE",
-              "return_pct": -45.4
-            },
-            {
-              "ticker": "UBER",
-              "return_pct": 9.7
-            },
-            {
-              "ticker": "LII",
-              "return_pct": -41.2
-            },
-            {
-              "ticker": "DPZ",
-              "return_pct": -29.7
-            },
-            {
-              "ticker": "BKNG",
-              "return_pct": -17.2
-            },
-            {
-              "ticker": "OTIS",
-              "return_pct": -22.5
-            },
-            {
-              "ticker": "YUM",
-              "return_pct": 13.6
-            },
-            {
-              "ticker": "MCK",
-              "return_pct": 73.7
-            },
-            {
-              "ticker": "ORLY",
-              "return_pct": 9.5
-            },
-            {
-              "ticker": "MA",
-              "return_pct": 16.9
-            },
-            {
-              "ticker": "V",
-              "return_pct": 26.1
-            },
-            {
-              "ticker": "MTD",
-              "return_pct": 31.8
-            },
-            {
-              "ticker": "AAPL",
-              "return_pct": 41.7
-            },
-            {
-              "ticker": "FTNT",
-              "return_pct": 94.2
-            },
-            {
-              "ticker": "MPWR",
-              "return_pct": 112.0
-            }
-          ]
+          "ticker": "DPZ",
+          "start_weight": 0.06666667,
+          "return_pct": -25.0
         },
         {
-          "name": "Quality Compounders 2025",
-          "criteria": "Quality compounders, time-weighted",
-          "start": "2025-04",
-          "end": "2026-10-14",
-          "total_return_pct": 29.1,
-          "cagr_pct": 18.7,
-          "holdings": [
-            {
-              "ticker": "AAPL"
-            },
-            {
-              "ticker": "AXP"
-            },
-            {
-              "ticker": "AZO"
-            },
-            {
-              "ticker": "BKNG"
-            },
-            {
-              "ticker": "CAH"
-            },
-            {
-              "ticker": "DPZ"
-            },
-            {
-              "ticker": "GOOGL"
-            },
-            {
-              "ticker": "LII"
-            },
-            {
-              "ticker": "MA"
-            },
-            {
-              "ticker": "MPWR"
-            },
-            {
-              "ticker": "NVDA"
-            },
-            {
-              "ticker": "ORLY"
-            },
-            {
-              "ticker": "V"
-            }
-          ]
+          "ticker": "AMP",
+          "start_weight": 0.06666667,
+          "return_pct": 35.6
+        },
+        {
+          "ticker": "BKNG",
+          "start_weight": 0.06666667,
+          "return_pct": 18.1
+        },
+        {
+          "ticker": "MO",
+          "start_weight": 0.06666667,
+          "return_pct": 114.6
+        },
+        {
+          "ticker": "OTIS",
+          "start_weight": 0.06666667,
+          "return_pct": -17.8
+        },
+        {
+          "ticker": "MTD",
+          "start_weight": 0.06666667,
+          "return_pct": 32.5
+        },
+        {
+          "ticker": "YUM",
+          "start_weight": 0.06666667,
+          "return_pct": 19.9
+        },
+        {
+          "ticker": "CAH",
+          "start_weight": 0.06666667,
+          "return_pct": 150.7
+        },
+        {
+          "ticker": "ORLY",
+          "start_weight": 0.06666667,
+          "return_pct": 37.6
+        },
+        {
+          "ticker": "COR",
+          "start_weight": 0.06666667,
+          "return_pct": 64.9
+        },
+        {
+          "ticker": "ADP",
+          "start_weight": 0.06666667,
+          "return_pct": 28.3
+        },
+        {
+          "ticker": "LII",
+          "start_weight": 0.06666667,
+          "return_pct": -18.8
+        },
+        {
+          "ticker": "AZO",
+          "start_weight": 0.06666667,
+          "return_pct": 13.4
+        },
+        {
+          "ticker": "MPWR",
+          "start_weight": 0.06666662,
+          "return_pct": 110.0
+        }
+      ]
+    },
+    {
+      "id": "tertius",
+      "name": "Tertius",
+      "screen": "High-ROIC screen",
+      "criteria": "Equal weight at the start of Jan 2025, companies with a high-ROIC screen",
+      "start": "2025-01-02",
+      "end": "2026-10-14",
+      "total_return_pct": 28.2,
+      "cagr_pct": 15.0,
+      "holdings": [
+        {
+          "ticker": "AMP",
+          "start_weight": 0.09090909,
+          "return_pct": -4.3
+        },
+        {
+          "ticker": "DPZ",
+          "start_weight": 0.09090909,
+          "return_pct": -29.7
+        },
+        {
+          "ticker": "BKNG",
+          "start_weight": 0.09090909,
+          "return_pct": -17.2
+        },
+        {
+          "ticker": "OTIS",
+          "start_weight": 0.09090909,
+          "return_pct": -22.5
+        },
+        {
+          "ticker": "YUM",
+          "start_weight": 0.09090909,
+          "return_pct": 13.6
+        },
+        {
+          "ticker": "MCK",
+          "start_weight": 0.09090909,
+          "return_pct": 73.7
+        },
+        {
+          "ticker": "MA",
+          "start_weight": 0.09090909,
+          "return_pct": 16.9
+        },
+        {
+          "ticker": "MTD",
+          "start_weight": 0.09090909,
+          "return_pct": 31.8
+        },
+        {
+          "ticker": "AAPL",
+          "start_weight": 0.09090909,
+          "return_pct": 41.7
+        },
+        {
+          "ticker": "FTNT",
+          "start_weight": 0.09090909,
+          "return_pct": 94.2
+        },
+        {
+          "ticker": "MPWR",
+          "start_weight": 0.0909091,
+          "return_pct": 112.0
+        }
+      ]
+    },
+    {
+      "id": "quartus",
+      "name": "Quartus",
+      "screen": "High-ROIC screen",
+      "criteria": "Equal weight at the start of Jan 2025, companies with a high-ROIC screen",
+      "start": "2025-01-02",
+      "end": "2026-10-14",
+      "total_return_pct": 16.8,
+      "cagr_pct": 9.1,
+      "holdings": [
+        {
+          "ticker": "AMP",
+          "start_weight": 0.0625,
+          "return_pct": -4.3
+        },
+        {
+          "ticker": "ADBE",
+          "start_weight": 0.0625,
+          "return_pct": -45.4
+        },
+        {
+          "ticker": "UBER",
+          "start_weight": 0.0625,
+          "return_pct": 9.7
+        },
+        {
+          "ticker": "LII",
+          "start_weight": 0.0625,
+          "return_pct": -41.2
+        },
+        {
+          "ticker": "DPZ",
+          "start_weight": 0.0625,
+          "return_pct": -29.7
+        },
+        {
+          "ticker": "BKNG",
+          "start_weight": 0.0625,
+          "return_pct": -17.2
+        },
+        {
+          "ticker": "OTIS",
+          "start_weight": 0.0625,
+          "return_pct": -22.5
+        },
+        {
+          "ticker": "YUM",
+          "start_weight": 0.0625,
+          "return_pct": 13.6
+        },
+        {
+          "ticker": "MCK",
+          "start_weight": 0.0625,
+          "return_pct": 73.7
+        },
+        {
+          "ticker": "ORLY",
+          "start_weight": 0.0625,
+          "return_pct": 9.5
+        },
+        {
+          "ticker": "MA",
+          "start_weight": 0.0625,
+          "return_pct": 16.9
+        },
+        {
+          "ticker": "V",
+          "start_weight": 0.0625,
+          "return_pct": 26.1
+        },
+        {
+          "ticker": "MTD",
+          "start_weight": 0.0625,
+          "return_pct": 31.8
+        },
+        {
+          "ticker": "AAPL",
+          "start_weight": 0.0625,
+          "return_pct": 41.7
+        },
+        {
+          "ticker": "FTNT",
+          "start_weight": 0.0625,
+          "return_pct": 94.2
+        },
+        {
+          "ticker": "MPWR",
+          "start_weight": 0.0625,
+          "return_pct": 112.0
+        }
+      ]
+    },
+    {
+      "id": "quintus",
+      "name": "Quintus",
+      "screen": "Quality compounders, time-weighted",
+      "criteria": "Equal-weight quality compounders, started Apr 2025",
+      "start": "2025-04-16",
+      "end": "2026-10-14",
+      "total_return_pct": 38.7,
+      "cagr_pct": 24.5,
+      "holdings": [
+        {
+          "ticker": "AAPL",
+          "start_weight": 0.07692308,
+          "return_pct": 77.6
+        },
+        {
+          "ticker": "AXP",
+          "start_weight": 0.07692308,
+          "return_pct": 23.4
+        },
+        {
+          "ticker": "AZO",
+          "start_weight": 0.07692308,
+          "return_pct": -18.4
+        },
+        {
+          "ticker": "BKNG",
+          "start_weight": 0.07692308,
+          "return_pct": -10.4
+        },
+        {
+          "ticker": "CAH",
+          "start_weight": 0.07692308,
+          "return_pct": 87.3
+        },
+        {
+          "ticker": "DPZ",
+          "start_weight": 0.07692308,
+          "return_pct": -34.1
+        },
+        {
+          "ticker": "GOOGL",
+          "start_weight": 0.07692308,
+          "return_pct": 127.8
+        },
+        {
+          "ticker": "LII",
+          "start_weight": 0.07692308,
+          "return_pct": -35.1
+        },
+        {
+          "ticker": "MA",
+          "start_weight": 0.07692308,
+          "return_pct": 18.6
+        },
+        {
+          "ticker": "MPWR",
+          "start_weight": 0.07692308,
+          "return_pct": 139.4
+        },
+        {
+          "ticker": "NVDA",
+          "start_weight": 0.07692308,
+          "return_pct": 112.3
+        },
+        {
+          "ticker": "ORLY",
+          "start_weight": 0.07692308,
+          "return_pct": -4.7
+        },
+        {
+          "ticker": "V",
+          "start_weight": 0.07692304,
+          "return_pct": 19.5
         }
       ]
     }
