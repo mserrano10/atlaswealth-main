@@ -382,6 +382,12 @@
         }
 
         function currentWeights(holdings) {
+            var explicit = holdings.length && holdings.every(function (holding) {
+                return holding.current_weight != null && holding.current_weight !== '';
+            });
+            if (explicit) {
+                return holdings.map(function (holding) { return Number(holding.current_weight); });
+            }
             var ready = holdings.length && holdings.every(function (holding) {
                 return holding.return_pct !== undefined && holding.return_pct !== null && holding.start_weight != null;
             });
