@@ -326,6 +326,13 @@
 
         @media (max-width: 640px) {
             .poster { padding: 36px 24px; }
+            /* Original phone chrome was 461.78125px; the stacked header
+               now extends 82.9375px below the logo. Offset centering by
+               that so the logo-to-headline gap matches the original page. */
+            main {
+                margin-top: max(0px, calc((100vh - 461.78125px) / 2 - 82.9375px));
+                margin-bottom: 0;
+            }
             .card-row { display: block; }
             .card,
             .card + .card {
