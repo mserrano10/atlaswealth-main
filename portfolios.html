@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atlas Wealth</title>
+
+    <!-- Embedded Geometric Atlas SVG Favicon (Monochrome) -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'><line x1='4' y1='32' x2='36' y2='32' stroke='%230F172A' stroke-width='3' stroke-linecap='round'/><path d='M20 6L32 32H8L20 6Z' stroke='%230F172A' stroke-width='3' stroke-linejoin='round' fill='none'/><circle cx='20' cy='22' r='3' fill='%230F172A'/></svg>">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: #FAF9F6;
+            color: #0F172A;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding: 60px 48px;
+            line-height: 1.6;
+        }
+
+        /* Top Header & Brand Logo */
+        header {
+            display: flex;
+            align-items: center;
+        }
+
+        .brand-logo, .brand-logo:visited, .brand-logo:hover, .brand-logo:active {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            text-decoration: none !important;
+            color: #0F172A;
+        }
+
+        .brand-mark {
+            width: 44px;
+            height: 44px;
+        }
+
+        /* Seamless Monolith Wordmark */
+        .brand-name {
+            font-size: 17pt;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: #0F172A;
+        }
+
+        .brand-name-atlas {
+            font-weight: 800;
+        }
+
+        .brand-name-wealth {
+            font-weight: 300;
+            opacity: 0.65;
+        }
+
+        /* Custom Trimmed Slash for 'WEA\TH' */
+        .brand-slash {
+            font-weight: 700;
+            color: #0F172A;
+            display: inline-block;
+            transform: scaleY(0.88) translateY(-1px);
+            margin: 0 -1px;
+        }
+
+        main {
+            width: 100%;
+            max-width: 1120px;
+            margin-top: 80px;
+            margin-bottom: 72px;
+        }
+
+        .page-intro {
+            max-width: 680px;
+        }
+
+        .headline {
+            font-size: 22pt;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            color: #0F172A;
+            line-height: 1.35;
+            margin-bottom: 20px;
+        }
+
+        .sub-headline {
+            font-size: 11pt;
+            color: #475569;
+            line-height: 1.7;
+        }
+
+        .cohort {
+            display: grid;
+            grid-template-columns: 104px minmax(0, 1fr);
+            gap: 28px 32px;
+            margin-top: 56px;
+            padding-top: 28px;
+            border-top: 1px solid #E2E8F0;
+        }
+
+        .cohort-year {
+            font-size: 17pt;
+            font-weight: 800;
+            letter-spacing: 1px;
+            line-height: 1.1;
+            color: #0F172A;
+        }
+
+        .cohort-count {
+            margin-top: 8px;
+            font-size: 8.5pt;
+            font-weight: 600;
+            letter-spacing: 0.2px;
+            color: #94A3B8;
+        }
+
+        .cohort-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            align-items: start;
+        }
+
+        .card {
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+            border: 1px solid #E2E8F0;
+            padding: 24px 24px 20px;
+            transition: border-color 0.2s ease;
+        }
+
+        .card-name {
+            font-size: 13pt;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+            line-height: 1.35;
+            color: #0F172A;
+        }
+
+        .card-criteria {
+            margin-top: 8px;
+            font-size: 11pt;
+            color: #475569;
+            line-height: 1.5;
+        }
+
+        .card-start {
+            margin-top: 4px;
+            font-size: 11pt;
+            color: #475569;
+            line-height: 1.5;
+        }
+
+        .card-start-label {
+            display: inline-block;
+            margin-right: 8px;
+            font-size: 8.5pt;
+            font-weight: 600;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            color: #94A3B8;
+        }
+
+        .metrics {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-end;
+            gap: 8px 32px;
+            margin-top: 28px;
+        }
+
+        .metric-value {
+            font-size: 28pt;
+            font-weight: 700;
+            letter-spacing: -1px;
+            line-height: 1;
+            color: #0F172A;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .metric-cagr .metric-value {
+            font-size: 18pt;
+            letter-spacing: -0.5px;
+        }
+
+        .metric-label {
+            margin-top: 8px;
+            font-size: 8.5pt;
+            font-weight: 600;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            color: #94A3B8;
+        }
+
+        .holdings {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            list-style: none;
+            margin-top: 28px;
+            padding-top: 20px;
+            border-top: 1px solid #E2E8F0;
+        }
+
+        .chip {
+            display: inline-flex;
+            align-items: baseline;
+            gap: 6px;
+            padding: 5px 9px;
+            background: #E2E8F0;
+            color: #0F172A;
+            font-size: 8.5pt;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            line-height: 1.4;
+        }
+
+        .chip-return {
+            font-weight: 500;
+            letter-spacing: 0;
+            font-variant-numeric: tabular-nums;
+        }
+
+        /* Footer Links */
+        footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            border-top: 1px solid #E2E8F0;
+            padding-top: 24px;
+            margin-top: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+        }
+
+        .nav-link {
+            font-size: 9.5pt;
+            font-weight: 600;
+            color: #0F172A;
+            text-decoration: none;
+            transition: opacity 0.2s ease;
+        }
+
+        .nav-link:hover {
+            opacity: 0.6;
+        }
+
+        .nav-link[aria-current="page"] {
+            text-decoration: underline;
+            text-underline-offset: 4px;
+        }
+
+        .contact-link {
+            color: #0F172A;
+        }
+
+        .copyright {
+            font-size: 8.5pt;
+            color: #94A3B8;
+        }
+
+        @media (hover: hover) {
+            .card:hover {
+                border-color: #0F172A;
+            }
+        }
+
+        @media (max-width: 860px) {
+            .cohort {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            body { padding: 36px 24px; }
+            .headline { font-size: 17pt; }
+            .brand-mark { width: 36px; height: 36px; }
+            .brand-name { font-size: 14pt; letter-spacing: 3px; }
+            footer { flex-direction: column; align-items: flex-start; gap: 16px; }
+            .nav-links { flex-direction: column; gap: 12px; }
+            main { margin-top: 48px; margin-bottom: 48px; }
+            .metric-value { font-size: 26pt; }
+            .metric-cagr .metric-value { font-size: 16pt; }
+            .cohort { margin-top: 40px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="brand-logo" aria-label="Atlas Wealth">
+            <!-- Custom Geometric Atlas Monogram SVG (Pure Charcoal) -->
+            <svg class="brand-mark" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <line x1="4" y1="32" x2="36" y2="32" stroke="#0F172A" stroke-width="2.5" stroke-linecap="round"/>
+                <path d="M20 6L32 32H8L20 6Z" stroke="#0F172A" stroke-width="2.5" stroke-linejoin="round"/>
+                <circle cx="20" cy="22" r="2.5" fill="#0F172A"/>
+            </svg>
+            <span class="brand-name">
+                <span class="brand-name-atlas">ATLAS</span><span class="brand-name-wealth">WEA<span class="brand-slash">\</span>TH</span>
+            </span>
+        </a>
+    </header>
+
+    <main>
+        <div class="page-intro">
+            <h1 class="headline">Portfolio performance by cohort.</h1>
+            <p class="sub-headline" id="method"></p>
+        </div>
+        <div id="cohorts"></div>
+        <noscript>
+            <p class="sub-headline">Enable JavaScript to load portfolio performance.</p>
+        </noscript>
+    </main>
+
+    <footer>
+        <div class="nav-links">
+            <a href="https://strategy.atlaswealth.cc" class="nav-link">Research Repository & Portal →</a>
+            <a href="mailto:investors@atlaswealth.cc" class="nav-link contact-link">Partner Inquiries</a>
+            <a href="portfolios.html" class="nav-link" aria-current="page">Portfolio Performance →</a>
+        </div>
+        <div class="copyright">
+            © Atlas Capital Research. Confidential Policy Portal.
+        </div>
+    </footer>
+
+    <script>
+        var MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+        var MONTHS_SHORT = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+        function el(tag, className, text) {
+            var node = document.createElement(tag);
+            if (className) node.className = className;
+            if (text != null) node.textContent = text;
+            return node;
+        }
+
+        function lerp(a, b, t) {
+            return Math.round(a + (b - a) * t);
+        }
+
+        function formatPct(value) {
+            var n = Number(value);
+            var body = Math.abs(n).toFixed(1) + '%';
+            if (n > 0) return '+' + body;
+            if (n < 0) return '\u2212' + body;
+            return body;
+        }
+
+        function formatMonth(ym) {
+            var parts = String(ym).split('-');
+            var month = MONTHS_SHORT[Number(parts[1]) - 1] || parts[1];
+            return month + ' ' + parts[0];
+        }
+
+        function formatAsOf(iso) {
+            var parts = String(iso).split('-');
+            var month = MONTHS[Number(parts[1]) - 1] || parts[1];
+            return Number(parts[2]) + ' ' + month + ' ' + parts[0];
+        }
+
+        function chipColors(pct) {
+            var mag = Math.min(1, Math.abs(pct) / 100);
+            var eased = 0.35 + 0.65 * Math.pow(mag, 0.6);
+            var bg;
+            var fg;
+            if (pct > 0) {
+                bg = [lerp(226, 176, eased), lerp(232, 214, eased), lerp(240, 190, eased)];
+                fg = [lerp(15, 18, eased), lerp(23, 90, eased), lerp(42, 48, eased)];
+            } else if (pct < 0) {
+                bg = [lerp(226, 244, eased), lerp(232, 196, eased), lerp(240, 196, eased)];
+                fg = [lerp(15, 153, eased), lerp(23, 27, eased), lerp(42, 27, eased)];
+            } else {
+                return null;
+            }
+            return {
+                background: 'rgb(' + bg.join(', ') + ')',
+                color: 'rgb(' + fg.join(', ') + ')'
+            };
+        }
+
+        function chipNode(holding) {
+            var li = el('li', 'chip');
+            li.appendChild(el('span', 'chip-ticker', holding.ticker));
+            if (holding.return_pct !== undefined && holding.return_pct !== null && holding.return_pct !== '') {
+                li.appendChild(el('span', 'chip-return', formatPct(holding.return_pct)));
+                var colors = chipColors(Number(holding.return_pct));
+                if (colors) {
+                    li.style.background = colors.background;
+                    li.style.color = colors.color;
+                }
+            }
+            return li;
+        }
+
+        function cardNode(portfolio) {
+            var article = el('article', 'card');
+            article.appendChild(el('h3', 'card-name', portfolio.name));
+            if (portfolio.criteria) article.appendChild(el('p', 'card-criteria', portfolio.criteria));
+
+            var start = el('p', 'card-start');
+            start.appendChild(el('span', 'card-start-label', 'Start'));
+            start.appendChild(document.createTextNode(formatMonth(portfolio.start)));
+            article.appendChild(start);
+
+            var metrics = el('div', 'metrics');
+            var total = el('div', 'metric');
+            total.appendChild(el('div', 'metric-value', formatPct(portfolio.total_return_pct)));
+            total.appendChild(el('div', 'metric-label', 'Total return'));
+            var cagr = el('div', 'metric metric-cagr');
+            cagr.appendChild(el('div', 'metric-value', formatPct(portfolio.cagr_pct)));
+            cagr.appendChild(el('div', 'metric-label', 'CAGR'));
+            metrics.appendChild(total);
+            metrics.appendChild(cagr);
+            article.appendChild(metrics);
+
+            var holdings = el('ul', 'holdings');
+            (portfolio.holdings || []).forEach(function (holding) {
+                holdings.appendChild(chipNode(holding));
+            });
+            article.appendChild(holdings);
+            return article;
+        }
+
+        function cohortNode(cohort) {
+            var section = el('section', 'cohort');
+            var label = el('div', 'cohort-label');
+            label.appendChild(el('h2', 'cohort-year', String(cohort.year)));
+            var count = (cohort.portfolios || []).length;
+            label.appendChild(el('p', 'cohort-count', count === 1 ? '1 portfolio' : count + ' portfolios'));
+            section.appendChild(label);
+
+            var grid = el('div', 'cohort-grid');
+            (cohort.portfolios || []).forEach(function (portfolio) {
+                grid.appendChild(cardNode(portfolio));
+            });
+            section.appendChild(grid);
+            return section;
+        }
+
+        function render(data) {
+            var method = document.getElementById('method');
+            var note = data.method || '';
+            if (data.as_of) note += (note ? ' ' : '') + 'Figures as of ' + formatAsOf(data.as_of) + '.';
+            method.textContent = note;
+
+            var root = document.getElementById('cohorts');
+            root.replaceChildren();
+            (data.cohorts || []).forEach(function (cohort) {
+                root.appendChild(cohortNode(cohort));
+            });
+        }
+
+        fetch('data/portfolios.json')
+            .then(function (response) {
+                if (!response.ok) throw new Error('status ' + response.status);
+                return response.json();
+            })
+            .then(render)
+            .catch(function () {
+                document.getElementById('method').textContent = 'Portfolio performance could not be loaded.';
+            });
+    </script>
+
+</body>
+</html>
