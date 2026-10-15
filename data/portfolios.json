@@ -316,79 +316,79 @@
       "holdings": [
         {
           "ticker": "AAPL",
-          "start_weight": 0.11267139,
+          "start_weight": 0.11115482,
           "current_weight": 0.16341222,
           "return_pct": 77.6
         },
         {
           "ticker": "AXP",
-          "start_weight": 0.0,
+          "start_weight": 0.06356887,
           "current_weight": 0.0560352,
           "return_pct": 4.1
         },
         {
           "ticker": "AZO",
-          "start_weight": 0.0,
+          "start_weight": 0.10647704,
           "current_weight": 0.06991216,
           "return_pct": -22.3
         },
         {
           "ticker": "BKNG",
-          "start_weight": 0.21683062,
+          "start_weight": 0.09634389,
           "current_weight": 0.06517548,
           "return_pct": -10.4
         },
         {
           "ticker": "CAH",
-          "start_weight": 0.11409858,
+          "start_weight": 0.10677972,
           "current_weight": 0.15226314,
           "return_pct": 87.3
         },
         {
           "ticker": "DPZ",
-          "start_weight": 0.10991896,
+          "start_weight": 0.06243153,
           "current_weight": 0.03355583,
           "return_pct": -34.1
         },
         {
           "ticker": "GOOGL",
-          "start_weight": 0.0,
+          "start_weight": 0.0637941,
           "current_weight": 0.11485818,
           "return_pct": 114.0
         },
         {
           "ticker": "LII",
-          "start_weight": 0.0,
+          "start_weight": 0.02403909,
           "current_weight": 0.01170549,
           "return_pct": -41.5
         },
         {
           "ticker": "MA",
-          "start_weight": 0.12194811,
+          "start_weight": 0.11299128,
           "current_weight": 0.10447487,
           "return_pct": 18.6
         },
         {
           "ticker": "MPWR",
-          "start_weight": 0.09896019,
+          "start_weight": 0.00395726,
           "current_weight": 0.00800386,
           "return_pct": 139.4
         },
         {
           "ticker": "NVDA",
-          "start_weight": 0.11488863,
+          "start_weight": 0.00459421,
           "current_weight": 0.00824251,
           "return_pct": 112.3
         },
         {
           "ticker": "ORLY",
-          "start_weight": 0.0,
+          "start_weight": 0.13290497,
           "current_weight": 0.10538781,
           "return_pct": -6.2
         },
         {
           "ticker": "V",
-          "start_weight": 0.11068352,
+          "start_weight": 0.11096322,
           "current_weight": 0.10697325,
           "return_pct": 19.5
         }

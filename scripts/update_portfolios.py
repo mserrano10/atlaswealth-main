@@ -190,8 +190,6 @@ def refresh_lots(portfolio: dict, path: Path, closes: dict[str, pd.Series], as_o
     book_start = None
     year_end = date(as_of_day.year - 1, 12, 31)
     base_day = max((day for day in calendar if day <= year_end), default=None)
-    start_holdings: dict[str, float] = {}
-    start_prices: dict[str, float] = {}
     last_value = 0.0
     last_prices: dict[str, float] = {}
 
@@ -218,8 +216,6 @@ def refresh_lots(portfolio: dict, path: Path, closes: dict[str, pd.Series], as_o
             raise SystemExit(f"Could not price {portfolio.get('id')}.")
         if prev_value is None:
             book_start = day
-            start_holdings = dict(holdings)
-            start_prices = dict(day_prices)
             prev_value = value
             last_value = value
             last_prices = day_prices
@@ -245,9 +241,12 @@ def refresh_lots(portfolio: dict, path: Path, closes: dict[str, pd.Series], as_o
         if holdings[ticker] * last_prices[ticker] > 1e-8
     ]
     current = unit_fractions([(ticker, holdings[ticker] * last_prices[ticker]) for ticker in active])
-    started = unit_fractions(
-        [(ticker, start_holdings.get(ticker, 0.0) * start_prices.get(ticker, 0.0)) for ticker in active]
-    )
+    net_capital: dict[str, float] = {}
+    for ticker, day, pct in lots:
+        if day > as_of_day:
+            continue
+        net_capital[ticker] = net_capital.get(ticker, 0.0) + pct
+    started = unit_fractions([(ticker, net_capital.get(ticker, 0.0)) for ticker in active])
     rows = []
     for ticker in active:
         entry = first_price[ticker]
