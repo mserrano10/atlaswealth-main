@@ -23,9 +23,9 @@ To add a portfolio, append an object to the `portfolios` array:
 }
 ```
 
-`screen` stores the original screen. `criteria` is the sentence shown on the detail page. `start` is the first close (`YYYY-MM-DD`). `start_weight` is the weight at that close; omit it to treat the book as equal weight.
+`screen` and `criteria` stay in the file for reference and are not shown on the site. `start` is the first close (`YYYY-MM-DD`). `start_weight` is the weight at that close; omit it to treat the book as equal weight.
 
-`scripts/update_portfolios.py` recomputes each holding's return, plus total return and CAGR, from adjusted closes and updates `as_of`. Install the dependency with `pip install -r requirements.txt`, then run:
+The public cards show year-to-date return, cumulative return since inception, annualized return, and the inception month. `scripts/update_portfolios.py` writes `ytd_pct` from the prior year-end close, using each holding's drifted weight at that close. If a portfolio starts after that close, year-to-date runs from its start date. The script also refreshes each holding's return, total return, CAGR, and `as_of`. Install the dependency with `pip install -r requirements.txt`, then run:
 
 ```bash
 python scripts/update_portfolios.py

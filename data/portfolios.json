@@ -52,7 +52,8 @@
           "start_weight": 0.125,
           "return_pct": 110.0
         }
-      ]
+      ],
+      "ytd_pct": 10.0
     },
     {
       "id": "mmxxiv-b",
@@ -139,7 +140,8 @@
           "start_weight": 0.06666662,
           "return_pct": 110.0
         }
-      ]
+      ],
+      "ytd_pct": 3.7
     },
     {
       "id": "mmxxv-a",
@@ -206,7 +208,8 @@
           "start_weight": 0.0909091,
           "return_pct": 112.0
         }
-      ]
+      ],
+      "ytd_pct": 14.5
     },
     {
       "id": "mmxxv-b",
@@ -298,7 +301,8 @@
           "start_weight": 0.0625,
           "return_pct": 112.0
         }
-      ]
+      ],
+      "ytd_pct": 6.9
     },
     {
       "id": "mmxxv-c",
@@ -375,7 +379,8 @@
           "start_weight": 0.07692304,
           "return_pct": 19.5
         }
-      ]
+      ],
+      "ytd_pct": 5.4
     }
   ]
 }

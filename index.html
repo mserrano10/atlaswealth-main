@@ -161,13 +161,17 @@
         .scroll-cue:visited,
         .scroll-cue:hover,
         .scroll-cue:active {
-            display: block;
-            font-size: 8pt;
-            letter-spacing: 2px;
-            text-transform: uppercase;
+            display: inline-block;
+            margin-top: 28px;
+            font-size: 11pt;
+            line-height: 1;
             color: #94A3B8;
             text-decoration: none;
-            margin-bottom: 18px;
+            transition: opacity 0.2s ease;
+        }
+
+        .scroll-cue:hover {
+            opacity: 0.6;
         }
 
         .two {
@@ -176,25 +180,9 @@
             border-top: 1px solid #E2E8F0;
         }
 
-        .p2-head {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            padding-bottom: 24px;
-            border-bottom: 1px solid #E2E8F0;
-            gap: 24px;
-        }
-
-        .p2-kicker {
-            font-size: 9.5pt;
-            font-weight: 600;
-        }
-
-        .p2-note {
-            font-size: 9pt;
-            color: #64748B;
-            max-width: 420px;
-            text-align: right;
+        .p2-intro {
+            max-width: 680px;
+            margin-bottom: 12px;
         }
 
         .card-row {
@@ -224,15 +212,57 @@
         }
 
         .c-name {
-            font-size: 9pt;
+            font-size: 11pt;
             color: #475569;
+            line-height: 1.5;
         }
 
         .c-ret {
-            font-size: 44pt;
+            margin-top: 14px;
+            font-size: 22pt;
             font-weight: 700;
-            letter-spacing: -2px;
+            letter-spacing: -0.5px;
             line-height: 1.15;
+            color: #0F172A;
+        }
+
+        .c-label {
+            margin-top: 6px;
+            font-size: 8.5pt;
+            font-weight: 600;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            color: #94A3B8;
+        }
+
+        .metric-line {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 16px;
+            margin-top: 10px;
+            font-size: 11pt;
+            line-height: 1.4;
+        }
+
+        .c-label + .metric-line {
+            margin-top: 18px;
+        }
+
+        .metric-k {
+            color: #475569;
+        }
+
+        .metric-v {
+            color: #0F172A;
+            font-weight: 600;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .c-inception {
+            margin-top: 10px;
+            font-size: 8.5pt;
+            color: #94A3B8;
         }
 
         .c-meta {
@@ -249,8 +279,6 @@
 
         @media (max-width: 640px) {
             .poster { padding: 36px 24px; }
-            .p2-head { flex-direction: column; align-items: flex-start; }
-            .p2-note { text-align: left; }
             .card-row { display: block; }
             .card,
             .card + .card {
@@ -259,7 +287,7 @@
                 border-top: 1px solid #E2E8F0;
             }
             .card-row .card:first-child { border-top: none; }
-            .c-ret { font-size: 30pt; }
+            .c-ret { font-size: 17pt; }
         }
     </style>
 </head>
@@ -287,9 +315,9 @@
             <div class="sub-headline">
                 Atlas manages private capital focused on multi-decade purchasing power expansion, rigorous business valuation heuristics, and rules-based derivative hedging.
             </div>
+            <a class="scroll-cue" href="#performance" aria-label="Portfolio performance">↓</a>
         </main>
 
-        <a class="scroll-cue" href="#performance">Portfolio performance ↓</a>
         <footer>
             <div class="nav-links">
                 <a href="https://strategy.atlaswealth.cc" class="nav-link">Research Repository & Portal →</a>
@@ -302,9 +330,9 @@
     </section>
 
     <section class="poster two" id="performance">
-        <div class="p2-head">
-            <span class="p2-kicker">Portfolio Performance</span>
-            <span class="p2-note">Equal-weight portfolios, dividends included.</span>
+        <div class="p2-intro">
+            <h2 class="headline">Portfolio performance.</h2>
+            <p class="sub-headline">Equal-weight portfolios, dividends included.</p>
         </div>
         <div id="cards">
             <noscript><p class="c-meta">Enable JavaScript to load portfolio performance.</p></noscript>
@@ -328,19 +356,34 @@
             return digits;
         }
 
-        function formatCagr(value) {
-            var n = Number(value);
-            var digits = Math.abs(n).toFixed(1) + '%';
-            if (n < 0) return '-' + digits;
-            return digits;
+        var MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+        function formatInception(iso) {
+            var parts = String(iso).split('-');
+            var month = MONTHS[Number(parts[1]) - 1] || parts[1];
+            return month + ' ' + parts[0];
+        }
+
+        function metricLine(label, value) {
+            var line = el('div', 'metric-line');
+            line.appendChild(el('span', 'metric-k', label));
+            line.appendChild(el('span', 'metric-v', value));
+            return line;
+        }
+
+        function appendMetrics(parent, portfolio) {
+            parent.appendChild(el('div', 'c-ret', formatTotal(portfolio.ytd_pct)));
+            parent.appendChild(el('div', 'c-label', 'YTD'));
+            parent.appendChild(metricLine('Since inception', formatTotal(portfolio.total_return_pct)));
+            parent.appendChild(metricLine('Annualized', formatTotal(portfolio.cagr_pct)));
+            parent.appendChild(el('div', 'c-inception', 'Inception ' + formatInception(portfolio.start)));
         }
 
         function cardNode(portfolio) {
             var card = el('a', 'card');
             card.href = 'portfolio.html?id=' + encodeURIComponent(portfolio.id);
             card.appendChild(el('div', 'c-name', portfolio.name));
-            card.appendChild(el('div', 'c-ret', formatTotal(portfolio.total_return_pct)));
-            card.appendChild(el('div', 'c-meta', 'Total return · ' + formatCagr(portfolio.cagr_pct) + ' CAGR'));
+            appendMetrics(card, portfolio);
             return card;
         }
 
