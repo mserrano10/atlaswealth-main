@@ -230,7 +230,7 @@
             transition: opacity 0.2s ease;
         }
 
-        .nav-link:hover {
+        .nav-link:hover:not(.partner-btn) {
             opacity: 0.6;
         }
 
@@ -241,12 +241,14 @@
         .partner-btn,
         .partner-btn:visited,
         .partner-btn:active {
+            opacity: 1;
             padding: 8px 14px;
             border: 1px solid #0F172A;
             border-radius: 4px;
             line-height: 1;
+            color: #0F172A;
             background-color: transparent;
-            transition: background-color 0.2s ease, color 0.2s ease, opacity 0.2s ease;
+            transition: none;
         }
 
         .partner-btn:hover {
