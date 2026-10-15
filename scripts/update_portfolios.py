@@ -160,7 +160,7 @@ def refresh(payload: dict) -> dict:
 def main() -> None:
     payload = json.loads(DATA_PATH.read_text())
     updated = refresh(payload)
-    DATA_PATH.write_text(json.dumps(updated, indent=2) + "\n")
+    DATA_PATH.write_text(json.dumps(updated, indent=2, ensure_ascii=False) + "\n")
     print(f"Updated {DATA_PATH} as of {updated['as_of']}")
     for portfolio in updated["portfolios"]:
         print(f"{portfolio['id']}: {portfolio['total_return_pct']}% total, {portfolio['cagr_pct']}% CAGR")

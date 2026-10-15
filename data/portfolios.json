@@ -3,8 +3,8 @@
   "method": "Equal weight at the first trading day's close, buy and hold, dividends reinvested (adjusted closes).",
   "portfolios": [
     {
-      "id": "primus",
-      "name": "Primus",
+      "id": "mmxxiv-a",
+      "name": "MMXXIV·A",
       "screen": "ROIC > 50%",
       "criteria": "Equal weight at the start of Jan 2024, companies with ROIC > 50%",
       "start": "2024-01-02",
@@ -55,8 +55,8 @@
       ]
     },
     {
-      "id": "secundus",
-      "name": "Secundus",
+      "id": "mmxxiv-b",
+      "name": "MMXXIV·B",
       "screen": "ROIC > 37.5%",
       "criteria": "Equal weight at the start of Jan 2024, companies with ROIC > 37.5%",
       "start": "2024-01-02",
@@ -142,8 +142,8 @@
       ]
     },
     {
-      "id": "tertius",
-      "name": "Tertius",
+      "id": "mmxxv-a",
+      "name": "MMXXV·A",
       "screen": "High-ROIC screen",
       "criteria": "Equal weight at the start of Jan 2025, companies with a high-ROIC screen",
       "start": "2025-01-02",
@@ -209,8 +209,8 @@
       ]
     },
     {
-      "id": "quartus",
-      "name": "Quartus",
+      "id": "mmxxv-b",
+      "name": "MMXXV·B",
       "screen": "High-ROIC screen",
       "criteria": "Equal weight at the start of Jan 2025, companies with a high-ROIC screen",
       "start": "2025-01-02",
@@ -301,8 +301,8 @@
       ]
     },
     {
-      "id": "quintus",
-      "name": "Quintus",
+      "id": "mmxxv-c",
+      "name": "MMXXV·C",
       "screen": "Quality compounders, time-weighted",
       "criteria": "Equal-weight quality compounders, started Apr 2025",
       "start": "2025-04-16",

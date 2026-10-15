@@ -5,12 +5,14 @@ Main website atlas wealth repository
 
 The landing page reads [`data/portfolios.json`](data/portfolios.json) and lists each portfolio, in order, as a card. A card links to `portfolio.html?id=<id>`.
 
+Names are the Roman numeral for the start year, a middle dot, and a letter: `MMXXIV·A`, `MMXXIV·B`, then `MMXXV·A`. The next year uses the next numeral, and letters start again at A when more than one portfolio shares a year. The id is the lowercase numeral, a hyphen, and the lowercase letter, so `MMXXVI·A` is `mmxxvi-a`.
+
 To add a portfolio, append an object to the `portfolios` array:
 
 ```json
 {
-  "id": "sextus",
-  "name": "Sextus",
+  "id": "mmxxvi-a",
+  "name": "MMXXVI·A",
   "screen": "ROIC > 40%",
   "criteria": "Equal weight at the start of Jan 2026, companies with ROIC > 40%",
   "start": "2026-01-02",
@@ -31,4 +33,4 @@ python scripts/update_portfolios.py
 
 A GitHub Actions workflow runs that script every weekday at 21:30 UTC and commits `data/portfolios.json` when the figures change.
 
-Quintus stores a start weight on each holding and uses the 16 April 2025 close. An equal-weight approximation is acceptable for that book, and it is what the refresh script applies.
+MMXXV·C stores a start weight on each holding and uses the 16 April 2025 close. An equal-weight approximation is acceptable for that book, and it is what the refresh script applies.
