@@ -25,7 +25,13 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Recompute returns
-        run: python scripts/update_portfolios.py
+        env:
+          PORTFOLIOS_PRIVATE_JSON: ${{ secrets.PORTFOLIOS_PRIVATE_JSON }}
+        run: |
+          export PORTFOLIOS_PRIVATE_PATH="$RUNNER_TEMP/portfolios-private.json"
+          printf '%s' "$PORTFOLIOS_PRIVATE_JSON" > "$PORTFOLIOS_PRIVATE_PATH"
+          python scripts/update_portfolios.py
+          rm -f "$PORTFOLIOS_PRIVATE_PATH"
 
       - name: Commit updated figures
         run: |

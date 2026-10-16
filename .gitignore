@@ -1,2 +1,7 @@
 __pycache__/
 *.pyc
+
+# Private portfolio inputs are never committed.
+private/
+*private*.json
+data/lots/

@@ -175,7 +175,7 @@
 
         .h-row {
             display: grid;
-            grid-template-columns: 1.4fr 1fr 1fr 1fr;
+            grid-template-columns: 1.4fr 1fr 1fr;
             gap: 12px;
             align-items: baseline;
             padding: 14px 0;
@@ -335,7 +335,7 @@
                 <a href="mailto:investors@atlaswealth.cc" class="nav-link contact-link">Partner Inquiries</a>
             </nav>
             <div class="copyright">
-                © Atlas Capital Research. Confidential Policy Portal.
+                © Atlas Wealth
             </div>
         </footer>
     </section>
@@ -389,7 +389,7 @@
                 return holdings.map(function (holding) { return Number(holding.current_weight); });
             }
             var ready = holdings.length && holdings.every(function (holding) {
-                return holding.return_pct !== undefined && holding.return_pct !== null && holding.start_weight != null;
+                return false;
             });
             if (!ready) return null;
             var growth = holdings.map(function (holding) {
@@ -424,7 +424,6 @@
 
             var head = el('div', 'h-row h-head');
             head.appendChild(el('div', '', 'Ticker'));
-            head.appendChild(el('div', 'h-num', 'Start weight'));
             head.appendChild(el('div', 'h-num', 'Current weight'));
             head.appendChild(el('div', 'h-num', 'Return'));
             root.appendChild(head);
@@ -432,7 +431,6 @@
             holdings.forEach(function (holding, index) {
                 var row = el('div', 'h-row');
                 row.appendChild(el('div', 'h-ticker', holding.ticker));
-                row.appendChild(weightCell('h-num h-start', 'Start weight', formatWeight(holding.start_weight)));
                 var now = drifted ? formatWeight(drifted[index]) : '—';
                 row.appendChild(weightCell('h-num h-now', 'Current weight', now));
                 var ret = (holding.return_pct === undefined || holding.return_pct === null) ? '—' : formatTotal(holding.return_pct);
