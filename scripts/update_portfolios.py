@@ -1,9 +1,13 @@
 #!/usr/bin/env python3
 """Recompute portfolio returns from adjusted closes.
 
-Reads holdings, start dates, and start weights in data/portfolios.json.
-A book with data/lots/<id>.json is valued from those trades instead.
-Writes year-to-date return, total return, CAGR, each holding's return, and as_of.
+Public figures live in data/portfolios.json. Inputs that must stay private
+(first close, start weights, trade lots, screens) are read from the JSON file
+named by PORTFOLIOS_PRIVATE_PATH, which is never committed. In Actions it is
+written from the PORTFOLIOS_PRIVATE_JSON secret.
+
+Writes year-to-date return, total return, CAGR, each holding's current weight
+and return, and as_of. Nothing else is published.
 """
 
 from __future__ import annotations
@@ -19,7 +23,9 @@ import yfinance as yf
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA_PATH = ROOT / "data" / "portfolios.json"
-LOTS_DIR = ROOT / "data" / "lots"
+PRIVATE_ENV = "PORTFOLIOS_PRIVATE_PATH"
+PUBLIC_KEYS = ("id", "name", "end", "total_return_pct", "cagr_pct", "ytd_pct", "holdings")
+PUBLIC_HOLDING_KEYS = ("ticker", "current_weight", "return_pct")
 NY = ZoneInfo("America/New_York")
 
 
@@ -106,14 +112,24 @@ def parse_start(value: str) -> date:
     raise SystemExit(f"Unrecognised start date: {value}")
 
 
-def lot_path(portfolio: dict) -> Path | None:
-    path = LOTS_DIR / f"{portfolio['id'].replace('-', '_')}.json"
-    return path if path.exists() else None
+def load_private() -> dict:
+    import os
+
+    raw = os.environ.get(PRIVATE_ENV)
+    if not raw:
+        raise SystemExit(f"Set {PRIVATE_ENV} to the private portfolio inputs file.")
+    path = Path(raw)
+    if ROOT in path.resolve().parents:
+        raise SystemExit("The private inputs file must live outside the repository.")
+    return json.loads(path.read_text()).get("portfolios") or {}
 
 
-def load_lots(path: Path) -> list[tuple[str, date, float]]:
-    payload = json.loads(path.read_text())
-    lots = payload.get("lots") or []
+def lot_path(portfolio: dict):
+    return portfolio.get("lots") or None
+
+
+def load_lots(lots: list) -> list[tuple[str, date, float]]:
+    path = "private inputs"
     if not lots:
         raise SystemExit(f"No lots in {path}.")
     parsed: list[tuple[str, date, float]] = []
@@ -145,7 +161,7 @@ def price_map(series: pd.Series) -> dict[date, float]:
     return {stamp.date(): float(value) for stamp, value in series.items()}
 
 
-def refresh_lots(portfolio: dict, path: Path, closes: dict[str, pd.Series], as_of_day: date) -> None:
+def refresh_lots(portfolio: dict, path: list, closes: dict[str, pd.Series], as_of_day: date) -> None:
     """Time-weighted return from lot sizes.
 
     units = pct / adjusted close. Holdings are cumulative units.
@@ -274,6 +290,56 @@ def portfolio_tickers(portfolio: dict) -> set[str]:
     return names
 
 
+def drifted_weights(portfolio: dict) -> None:
+    holdings = portfolio["holdings"]
+    if all(holding.get("current_weight") is not None for holding in holdings):
+        return
+    growth = [
+        (holding["ticker"], float(holding["start_weight"]) * (1 + holding["return_pct"] / 100.0))
+        for holding in holdings
+    ]
+    weights = unit_fractions(growth)
+    for holding in holdings:
+        holding["current_weight"] = weights[holding["ticker"]]
+
+
+def merge_private(public: dict, private: dict) -> list[dict]:
+    books = []
+    for entry in public.get("portfolios") or []:
+        secret = private.get(entry["id"])
+        if secret is None:
+            raise SystemExit(f"No private inputs for {entry['id']}.")
+        book = dict(entry)
+        book["start"] = secret["start"]
+        if secret.get("lots"):
+            book["lots"] = secret["lots"]
+        else:
+            weights = secret.get("start_weights") or {}
+            book["holdings"] = [
+                {"ticker": holding["ticker"], "start_weight": weights.get(holding["ticker"])}
+                for holding in entry.get("holdings") or []
+            ]
+            if any(holding["start_weight"] is None for holding in book["holdings"]):
+                for holding, weight in zip(book["holdings"], equal_weights(len(book["holdings"]))):
+                    if holding["start_weight"] is None:
+                        holding["start_weight"] = weight
+        books.append(book)
+    return books
+
+
+def publish(payload: dict, books: list[dict]) -> dict:
+    out = {"as_of": payload["as_of"], "method": payload.get("method"), "portfolios": []}
+    for book in books:
+        drifted_weights(book)
+        row = {key: book[key] for key in PUBLIC_KEYS if key in book}
+        row["holdings"] = [
+            {key: holding[key] for key in PUBLIC_HOLDING_KEYS if key in holding}
+            for holding in book["holdings"]
+        ]
+        out["portfolios"].append(row)
+    return out
+
+
 def refresh(payload: dict) -> dict:
     portfolios = payload.get("portfolios") or []
     if not portfolios:
@@ -359,8 +425,10 @@ def refresh(payload: dict) -> dict:
 
 
 def main() -> None:
-    payload = json.loads(DATA_PATH.read_text())
-    updated = refresh(payload)
+    public = json.loads(DATA_PATH.read_text())
+    books = merge_private(public, load_private())
+    payload = {"as_of": public.get("as_of"), "method": public.get("method"), "portfolios": books}
+    updated = publish(refresh(payload), books)
     DATA_PATH.write_text(json.dumps(updated, indent=2, ensure_ascii=False) + "\n")
     print(f"Updated {DATA_PATH} as of {updated['as_of']}")
     for portfolio in updated["portfolios"]:
