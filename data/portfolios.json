@@ -302,7 +302,7 @@
       "holdings": [
         {
           "ticker": "AAPL",
-          "current_weight": 0.160589,
+          "current_weight": 0.16058898,
           "return_pct": 77.9
         },
         {
@@ -312,7 +312,7 @@
         },
         {
           "ticker": "AZO",
-          "current_weight": 0.07352809,
+          "current_weight": 0.0735281,
           "return_pct": -16.7
         },
         {
@@ -332,7 +332,7 @@
         },
         {
           "ticker": "GOOGL",
-          "current_weight": 0.1104238,
+          "current_weight": 0.11042379,
           "return_pct": 109.6
         },
         {
@@ -342,7 +342,7 @@
         },
         {
           "ticker": "MA",
-          "current_weight": 0.10493031,
+          "current_weight": 0.10493032,
           "return_pct": 21.4
         },
         {
@@ -357,7 +357,7 @@
         },
         {
           "ticker": "ORLY",
-          "current_weight": 0.10649407,
+          "current_weight": 0.10649408,
           "return_pct": -3.4
         },
         {
