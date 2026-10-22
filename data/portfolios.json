@@ -302,67 +302,67 @@
       "holdings": [
         {
           "ticker": "AAPL",
-          "current_weight": 0.15779607,
+          "current_weight": 0.15779582,
           "return_pct": 75.8
         },
         {
           "ticker": "AXP",
-          "current_weight": 0.05668915,
+          "current_weight": 0.05668905,
           "return_pct": 8.0
         },
         {
           "ticker": "AZO",
-          "current_weight": 0.07401933,
+          "current_weight": 0.07401921,
           "return_pct": -15.7
         },
         {
           "ticker": "BKNG",
-          "current_weight": 0.06485893,
+          "current_weight": 0.06485882,
           "return_pct": -8.6
         },
         {
           "ticker": "CAH",
-          "current_weight": 0.15441007,
+          "current_weight": 0.1544098,
           "return_pct": 94.7
         },
         {
           "ticker": "DPZ",
-          "current_weight": 0.03499177,
+          "current_weight": 0.03499171,
           "return_pct": -29.5
         },
         {
           "ticker": "GOOGL",
-          "current_weight": 0.10966741,
+          "current_weight": 0.10966885,
           "return_pct": 109.4
         },
         {
           "ticker": "LII",
-          "current_weight": 0.01190708,
+          "current_weight": 0.01190707,
           "return_pct": -38.9
         },
         {
           "ticker": "MA",
-          "current_weight": 0.10481486,
+          "current_weight": 0.1048147,
           "return_pct": 21.9
         },
         {
           "ticker": "MPWR",
-          "current_weight": 0.00784291,
+          "current_weight": 0.0078429,
           "return_pct": 140.4
         },
         {
           "ticker": "NVDA",
-          "current_weight": 0.00786486,
+          "current_weight": 0.00786485,
           "return_pct": 107.7
         },
         {
           "ticker": "ORLY",
-          "current_weight": 0.10675192,
+          "current_weight": 0.10675174,
           "return_pct": -2.6
         },
         {
           "ticker": "V",
-          "current_weight": 0.10838564,
+          "current_weight": 0.10838548,
           "return_pct": 24.1
         }
       ]
