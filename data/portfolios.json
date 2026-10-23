@@ -1,368 +1,368 @@
 {
-  "as_of": "2026-10-21",
+  "as_of": "2026-10-23",
   "method": "Returns from adjusted closes, dividends reinvested.",
   "portfolios": [
     {
       "id": "mmxxiv-a",
       "name": "MMXXIV·A",
-      "end": "2026-10-21",
-      "total_return_pct": 59.8,
-      "cagr_pct": 18.2,
-      "ytd_pct": 13.7,
+      "end": "2026-10-23",
+      "total_return_pct": 56.5,
+      "cagr_pct": 17.3,
+      "ytd_pct": 11.4,
       "holdings": [
         {
           "ticker": "MCK",
-          "current_weight": 0.16980837,
-          "return_pct": 117.1
+          "current_weight": 0.17080572,
+          "return_pct": 113.9
         },
         {
           "ticker": "DPZ",
-          "current_weight": 0.06171294,
-          "return_pct": -21.1
+          "current_weight": 0.06348319,
+          "return_pct": -20.5
         },
         {
           "ticker": "AMP",
-          "current_weight": 0.10496676,
-          "return_pct": 34.2
+          "current_weight": 0.10748223,
+          "return_pct": 34.6
         },
         {
           "ticker": "MA",
-          "current_weight": 0.11748142,
-          "return_pct": 50.2
+          "current_weight": 0.12017887,
+          "return_pct": 50.5
         },
         {
           "ticker": "OTIS",
-          "current_weight": 0.06726633,
-          "return_pct": -14.0
+          "current_weight": 0.07138864,
+          "return_pct": -10.6
         },
         {
           "ticker": "CAH",
-          "current_weight": 0.20383262,
-          "return_pct": 160.6
+          "current_weight": 0.20170887,
+          "return_pct": 152.6
         },
         {
           "ticker": "ADP",
-          "current_weight": 0.10535784,
-          "return_pct": 34.7
+          "current_weight": 0.11115547,
+          "return_pct": 39.2
         },
         {
           "ticker": "MPWR",
-          "current_weight": 0.16957372,
-          "return_pct": 116.8
+          "current_weight": 0.15379701,
+          "return_pct": 92.6
         }
       ]
     },
     {
       "id": "mmxxiv-b",
       "name": "MMXXIV·B",
-      "end": "2026-10-21",
-      "total_return_pct": 49.3,
-      "cagr_pct": 15.4,
-      "ytd_pct": 6.9,
+      "end": "2026-10-23",
+      "total_return_pct": 47.4,
+      "cagr_pct": 14.8,
+      "ytd_pct": 5.6,
       "holdings": [
         {
           "ticker": "MCK",
-          "current_weight": 0.09691965,
-          "return_pct": 117.1
+          "current_weight": 0.09671294,
+          "return_pct": 113.9
         },
         {
           "ticker": "DPZ",
-          "current_weight": 0.03522322,
-          "return_pct": -21.1
+          "current_weight": 0.0359452,
+          "return_pct": -20.5
         },
         {
           "ticker": "AMP",
-          "current_weight": 0.05991072,
-          "return_pct": 34.2
+          "current_weight": 0.06085817,
+          "return_pct": 34.6
         },
         {
           "ticker": "BKNG",
-          "current_weight": 0.05200893,
-          "return_pct": 16.5
+          "current_weight": 0.05181535,
+          "return_pct": 14.6
         },
         {
           "ticker": "MO",
-          "current_weight": 0.09669644,
-          "return_pct": 116.6
+          "current_weight": 0.09861193,
+          "return_pct": 118.1
         },
         {
           "ticker": "OTIS",
-          "current_weight": 0.03839286,
-          "return_pct": -14.0
+          "current_weight": 0.0404214,
+          "return_pct": -10.6
         },
         {
           "ticker": "MTD",
-          "current_weight": 0.06169643,
-          "return_pct": 38.2
+          "current_weight": 0.06221459,
+          "return_pct": 37.6
         },
         {
           "ticker": "YUM",
-          "current_weight": 0.05517858,
-          "return_pct": 23.6
+          "current_weight": 0.05534205,
+          "return_pct": 22.4
         },
         {
           "ticker": "CAH",
-          "current_weight": 0.11633928,
-          "return_pct": 160.6
+          "current_weight": 0.11421079,
+          "return_pct": 152.6
         },
         {
           "ticker": "ORLY",
-          "current_weight": 0.06321429,
-          "return_pct": 41.6
+          "current_weight": 0.06452051,
+          "return_pct": 42.7
         },
         {
           "ticker": "COR",
-          "current_weight": 0.07455358,
-          "return_pct": 67.0
+          "current_weight": 0.07338247,
+          "return_pct": 62.3
         },
         {
           "ticker": "ADP",
-          "current_weight": 0.06013393,
-          "return_pct": 34.7
+          "current_weight": 0.06293802,
+          "return_pct": 39.2
         },
         {
           "ticker": "LII",
-          "current_weight": 0.03808036,
-          "return_pct": -14.7
+          "current_weight": 0.03960754,
+          "return_pct": -12.4
         },
         {
           "ticker": "AZO",
-          "current_weight": 0.05486608,
-          "return_pct": 22.9
+          "current_weight": 0.05633676,
+          "return_pct": 24.6
         },
         {
           "ticker": "MPWR",
-          "current_weight": 0.09678565,
-          "return_pct": 116.8
+          "current_weight": 0.08708228,
+          "return_pct": 92.6
         }
       ]
     },
     {
       "id": "mmxxv-a",
       "name": "MMXXV·A",
-      "end": "2026-10-21",
-      "total_return_pct": 30.2,
-      "cagr_pct": 15.8,
-      "ytd_pct": 16.3,
+      "end": "2026-10-23",
+      "total_return_pct": 28.5,
+      "cagr_pct": 14.9,
+      "ytd_pct": 14.8,
       "holdings": [
         {
           "ticker": "AMP",
-          "current_weight": 0.06613128,
-          "return_pct": -5.3
+          "current_weight": 0.0672043,
+          "return_pct": -5.0
         },
         {
           "ticker": "DPZ",
-          "current_weight": 0.05167598,
-          "return_pct": -26.0
+          "current_weight": 0.05270232,
+          "return_pct": -25.5
         },
         {
           "ticker": "BKNG",
-          "current_weight": 0.05698324,
-          "return_pct": -18.4
+          "current_weight": 0.05680532,
+          "return_pct": -19.7
         },
         {
           "ticker": "OTIS",
-          "current_weight": 0.05670391,
-          "return_pct": -18.8
+          "current_weight": 0.05963497,
+          "return_pct": -15.7
         },
         {
           "ticker": "YUM",
-          "current_weight": 0.08177374,
-          "return_pct": 17.1
+          "current_weight": 0.08198925,
+          "return_pct": 15.9
         },
         {
           "ticker": "MCK",
-          "current_weight": 0.12618715,
-          "return_pct": 80.7
+          "current_weight": 0.12591964,
+          "return_pct": 78.0
         },
         {
           "ticker": "MA",
-          "current_weight": 0.08421788,
-          "return_pct": 20.6
+          "current_weight": 0.08545557,
+          "return_pct": 20.8
         },
         {
           "ticker": "MTD",
-          "current_weight": 0.09594972,
-          "return_pct": 37.4
+          "current_weight": 0.09677419,
+          "return_pct": 36.8
         },
         {
           "ticker": "AAPL",
-          "current_weight": 0.09923184,
-          "return_pct": 42.1
+          "current_weight": 0.10158461,
+          "return_pct": 43.6
         },
         {
           "ticker": "FTNT",
-          "current_weight": 0.12828212,
-          "return_pct": 83.7
+          "current_weight": 0.1344086,
+          "return_pct": 90.0
         },
         {
           "ticker": "MPWR",
-          "current_weight": 0.15286314,
-          "return_pct": 118.9
+          "current_weight": 0.13752123,
+          "return_pct": 94.4
         }
       ]
     },
     {
       "id": "mmxxv-b",
       "name": "MMXXV·B",
-      "end": "2026-10-21",
-      "total_return_pct": 18.9,
-      "cagr_pct": 10.1,
-      "ytd_pct": 8.8,
+      "end": "2026-10-23",
+      "total_return_pct": 18.0,
+      "cagr_pct": 9.6,
+      "ytd_pct": 7.9,
       "holdings": [
         {
           "ticker": "AMP",
-          "current_weight": 0.04977399,
-          "return_pct": -5.3
+          "current_weight": 0.05033113,
+          "return_pct": -5.0
         },
         {
           "ticker": "ADBE",
-          "current_weight": 0.03037948,
-          "return_pct": -42.2
+          "current_weight": 0.03168212,
+          "return_pct": -40.2
         },
         {
           "ticker": "UBER",
-          "current_weight": 0.05623883,
-          "return_pct": 7.0
+          "current_weight": 0.05594702,
+          "return_pct": 5.6
         },
         {
           "ticker": "LII",
-          "current_weight": 0.03242931,
-          "return_pct": -38.3
+          "current_weight": 0.0335894,
+          "return_pct": -36.6
         },
         {
           "ticker": "DPZ",
-          "current_weight": 0.03889414,
-          "return_pct": -26.0
+          "current_weight": 0.0394702,
+          "return_pct": -25.5
         },
         {
           "ticker": "BKNG",
-          "current_weight": 0.04288868,
-          "return_pct": -18.4
+          "current_weight": 0.04254305,
+          "return_pct": -19.7
         },
         {
           "ticker": "OTIS",
-          "current_weight": 0.04267844,
-          "return_pct": -18.8
+          "current_weight": 0.04466225,
+          "return_pct": -15.7
         },
         {
           "ticker": "YUM",
-          "current_weight": 0.06154736,
-          "return_pct": 17.1
+          "current_weight": 0.06140397,
+          "return_pct": 15.9
         },
         {
           "ticker": "MCK",
-          "current_weight": 0.0949753,
-          "return_pct": 80.7
+          "current_weight": 0.09430464,
+          "return_pct": 78.0
         },
         {
           "ticker": "ORLY",
-          "current_weight": 0.05923473,
-          "return_pct": 12.7
+          "current_weight": 0.06018543,
+          "return_pct": 13.6
         },
         {
           "ticker": "MA",
-          "current_weight": 0.06338694,
-          "return_pct": 20.6
+          "current_weight": 0.064,
+          "return_pct": 20.8
         },
         {
           "ticker": "V",
-          "current_weight": 0.06906339,
-          "return_pct": 31.4
+          "current_weight": 0.06966887,
+          "return_pct": 31.5
         },
         {
           "ticker": "MTD",
-          "current_weight": 0.07221697,
-          "return_pct": 37.4
+          "current_weight": 0.07247682,
+          "return_pct": 36.8
         },
         {
           "ticker": "AAPL",
-          "current_weight": 0.07468727,
-          "return_pct": 42.1
+          "current_weight": 0.07607947,
+          "return_pct": 43.6
         },
         {
           "ticker": "FTNT",
-          "current_weight": 0.09655209,
-          "return_pct": 83.7
+          "current_weight": 0.10066225,
+          "return_pct": 90.0
         },
         {
           "ticker": "MPWR",
-          "current_weight": 0.11505308,
-          "return_pct": 118.9
+          "current_weight": 0.10299338,
+          "return_pct": 94.4
         }
       ]
     },
     {
       "id": "mmxxv-c",
       "name": "MMXXV·C",
-      "end": "2026-10-21",
-      "total_return_pct": 32.5,
-      "cagr_pct": 20.4,
-      "ytd_pct": 5.4,
+      "end": "2026-10-23",
+      "total_return_pct": 31.2,
+      "cagr_pct": 19.6,
+      "ytd_pct": 4.4,
       "holdings": [
         {
           "ticker": "AAPL",
-          "current_weight": 0.16010821,
-          "return_pct": 78.2
+          "current_weight": 0.1633492,
+          "return_pct": 80.1
         },
         {
           "ticker": "AXP",
-          "current_weight": 0.0577088,
-          "return_pct": 9.7
+          "current_weight": 0.05637452,
+          "return_pct": 6.2
         },
         {
           "ticker": "AZO",
-          "current_weight": 0.07404293,
-          "return_pct": -15.8
+          "current_weight": 0.07577243,
+          "return_pct": -14.6
         },
         {
           "ticker": "BKNG",
-          "current_weight": 0.06275518,
-          "return_pct": -11.7
+          "current_weight": 0.06231802,
+          "return_pct": -13.1
         },
         {
           "ticker": "CAH",
-          "current_weight": 0.15457356,
-          "return_pct": 94.7
+          "current_weight": 0.15122763,
+          "return_pct": 88.7
         },
         {
           "ticker": "DPZ",
-          "current_weight": 0.03446943,
-          "return_pct": -30.7
+          "current_weight": 0.0350645,
+          "return_pct": -30.2
         },
         {
           "ticker": "GOOGL",
-          "current_weight": 0.10804198,
-          "return_pct": 106.1
+          "current_weight": 0.10430549,
+          "return_pct": 97.1
         },
         {
           "ticker": "LII",
-          "current_weight": 0.01200908,
-          "return_pct": -38.5
+          "current_weight": 0.01243949,
+          "return_pct": -36.9
         },
         {
           "ticker": "MA",
-          "current_weight": 0.10533474,
-          "return_pct": 22.4
+          "current_weight": 0.10647996,
+          "return_pct": 22.6
         },
         {
           "ticker": "MPWR",
-          "current_weight": 0.00807145,
-          "return_pct": 147.1
+          "current_weight": 0.00723736,
+          "return_pct": 119.5
         },
         {
           "ticker": "NVDA",
-          "current_weight": 0.00807605,
-          "return_pct": 113.0
+          "current_weight": 0.00774673,
+          "return_pct": 102.4
         },
         {
           "ticker": "ORLY",
-          "current_weight": 0.10592853,
-          "return_pct": -3.5
+          "current_weight": 0.10777492,
+          "return_pct": -2.7
         },
         {
           "ticker": "V",
-          "current_weight": 0.10888006,
+          "current_weight": 0.10990975,
           "return_pct": 24.5
         }
       ]
