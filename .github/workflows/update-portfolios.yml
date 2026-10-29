@@ -1,46 +1,23 @@
 name: Update portfolio returns
 
+# Paused. atlaswealth.cc is a contact-only page and must not publish
+# portfolio figures. This file intentionally has no schedule. A manual
+# run exits without fetching prices or writing data/portfolios.json.
+# The previous workflow and site are on the full-site-backup branch.
+# Restore that branch onto the publishing branch before collecting figures again.
+
 on:
-  schedule:
-    # Weekdays at 21:30 UTC, after the US cash close.
-    - cron: "30 21 * * 1-5"
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   update:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-
-      - name: Install dependencies
-        run: pip install -r requirements.txt
-
-      - name: Recompute returns
-        env:
-          PORTFOLIOS_PRIVATE_JSON: ${{ secrets.PORTFOLIOS_PRIVATE_JSON }}
+      - name: Paused
         run: |
-          export PORTFOLIOS_PRIVATE_PATH="$RUNNER_TEMP/portfolios-private.json"
-          printf '%s' "$PORTFOLIOS_PRIVATE_JSON" > "$PORTFOLIOS_PRIVATE_PATH"
-          python scripts/update_portfolios.py
-          rm -f "$PORTFOLIOS_PRIVATE_PATH"
-
-      - name: Commit updated figures
-        run: |
-          if git diff --quiet -- data/portfolios.json; then
-            echo "No change in portfolio figures."
-            exit 0
-          fi
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/portfolios.json
-          git commit -m "Update portfolio returns"
-          git push
+          echo "Paused. This workflow does not fetch prices or publish portfolio figures."
+          echo "The previous site is on the full-site-backup branch."
+          exit 0

@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
     <title>Atlas Wealth</title>
 
     <!-- Embedded Geometric Atlas SVG Favicon (Monochrome) -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'><line x1='4' y1='32' x2='36' y2='32' stroke='%230F172A' stroke-width='2.5' stroke-linecap='round'/><path d='M20 6L32 32H8L20 6Z' stroke='%230F172A' stroke-width='2.5' stroke-linejoin='round' fill='none'/><circle cx='20' cy='22' r='3' fill='%230F172A'/></svg>">
 
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap');
 
         * {
             box-sizing: border-box;
@@ -17,47 +18,52 @@
             padding: 0;
         }
 
+        html {
+            color-scheme: light;
+            background-color: #FAF9F6;
+        }
+
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             background-color: #FAF9F6;
             color: #0F172A;
-            height: 100vh;
+            min-height: 100vh;
+            min-height: 100dvh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 48px 48px 14vh;
+            line-height: 1.5;
+        }
+
+        main {
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
-            padding: 60px 48px;
-            line-height: 1.6;
+            align-items: flex-start;
         }
 
-        /* Top Header & Brand Logo */
-        header {
+        .brand {
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            gap: 20px 32px;
-        }
-
-        .brand-logo, .brand-logo:visited, .brand-logo:hover, .brand-logo:active {
-            display: flex;
-            align-items: center;
-            flex-shrink: 0;
             gap: 18px;
-            text-decoration: none !important;
-            color: #0F172A;
         }
 
         .brand-mark {
-            width: 44px;  
-            height: 44px; 
+            width: 44px;
+            height: 44px;
+            flex-shrink: 0;
         }
 
-        /* Seamless Monolith Wordmark */
         .brand-name {
             font-size: 17pt;
+            font-weight: 400;
             letter-spacing: 4px;
             text-transform: uppercase;
             color: #0F172A;
             white-space: nowrap;
+            line-height: 1;
+            /* Drop the trailing tracking gap so the lockup centers on its letters. */
+            margin-right: -4px;
         }
 
         .brand-name-atlas {
@@ -69,7 +75,6 @@
             opacity: 0.65;
         }
 
-        /* Custom Trimmed Slash for 'WEA\TH' */
         .brand-slash {
             font-weight: 700;
             color: #0F172A;
@@ -78,442 +83,92 @@
             margin: 0 -1px;
         }
 
-        /* Center Statement */
-        main {
-            max-width: 680px;
-            margin: auto 0;
-        }
-
-        .headline {
-            font-size: 22pt;
-            font-weight: 700;
-            letter-spacing: -0.5px;
-            color: #0F172A;
-            line-height: 1.35;
-            margin-bottom: 20px;
-        }
-
-        .sub-headline {
-            font-size: 11pt;
-            color: #475569;
-            line-height: 1.7;
-        }
-
-        /* Footer Links */
-        footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            gap: 16px 32px;
-            border-top: 1px solid #E2E8F0;
-            padding: 24px 48px 60px;
-            background-color: #FAF9F6;
-        }
-
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 32px;
-        }
-
-        .nav-link {
-            font-size: 9.5pt;
-            font-weight: 600;
-            color: #0F172A;
-            text-decoration: none;
-            white-space: nowrap;
-            transition: opacity 0.2s ease;
-        }
-
-        .nav-link:hover:not(.partner-btn) {
-            opacity: 0.6;
-        }
-
-        .contact-link {
-            color: #0F172A;
-        }
-
-        .partner-btn,
-        .partner-btn:visited,
-        .partner-btn:active {
-            opacity: 1;
-            padding: 8px 14px;
-            border: 1px solid #0F172A;
-            border-radius: 4px;
-            line-height: 1;
-            color: #0F172A;
-            background-color: transparent;
-            transition: none;
-        }
-
-        .partner-btn:hover {
-            opacity: 1;
-            background-color: #0F172A;
-            color: #ffffff;
-        }
-
-        .copyright {
-            font-size: 8.5pt;
-            color: #94A3B8;
-        }
-
-        @media (max-width: 640px) {
-            body { padding: 36px 24px; }
-            .headline { font-size: 17pt; }
-            .brand-mark { width: 36px; height: 36px; }
-            .brand-name { font-size: 14pt; letter-spacing: 3px; }
-            header { flex-direction: column; align-items: flex-start; gap: 20px; }
-            footer {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 16px;
-                padding: 24px 24px 36px;
-            }
-            .nav-links { flex-direction: column; align-items: flex-start; gap: 12px; }
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            height: auto;
-            display: block;
-            padding: 0;
-        }
-
-        .poster {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            padding: 60px 48px;
-        }
-
-        .scroll-cue,
-        .scroll-cue:visited,
-        .scroll-cue:hover,
-        .scroll-cue:active {
-            display: inline-block;
-            margin-top: 28px;
-            font-size: 11pt;
-            line-height: 1;
-            color: #94A3B8;
-            text-decoration: none;
-            transition: opacity 0.2s ease;
-        }
-
-        .scroll-cue:hover {
-            opacity: 0.6;
-        }
-
-        .two {
-            min-height: auto;
-            justify-content: flex-start;
-            gap: 0;
-            border-top: 1px solid #E2E8F0;
-            background-color: #F3F1EB;
-        }
-
-        /* Laptop Chrome: keep the statement centered on the full screen,
-           and let the band cover the bottom 140px so its edge and heading show. */
-        @media (min-width: 641px) {
-            .poster:not(.two) {
-                margin-bottom: -140px;
-            }
-        }
-
-        .p2-intro {
-            max-width: 680px;
-            margin-bottom: 12px;
-        }
-
-        .card-row {
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            column-gap: 56px;
-            border-bottom: 1px solid #E2E8F0;
-        }
-
-        .card,
-        .card:visited,
-        .card:hover,
-        .card:active {
-            display: block;
-            position: relative;
-            padding: 32px 0;
-            color: inherit;
-            text-decoration: none;
-            transition: opacity 0.2s ease;
-        }
-
-        .card + .card::before {
-            content: "";
+        .sr-only {
             position: absolute;
-            left: -28px;
-            top: 0;
-            bottom: 0;
-            border-left: 1px solid #E2E8F0;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
         }
 
-        .card:hover {
-            opacity: 0.6;
-        }
-
-        .c-name {
-            font-size: 11pt;
-            color: #475569;
-            line-height: 1.5;
-        }
-
-        .c-ret {
-            margin-top: 14px;
-            font-size: 22pt;
-            font-weight: 700;
-            letter-spacing: -0.5px;
-            line-height: 1.15;
-            color: #0F172A;
-        }
-
-        .c-label {
-            margin-top: 6px;
-            font-size: 8.5pt;
-            font-weight: 600;
-            letter-spacing: 1.2px;
-            text-transform: uppercase;
-            color: #94A3B8;
-        }
-
-        .metric-line {
+        .contact {
             display: flex;
-            justify-content: space-between;
             align-items: baseline;
-            gap: 16px;
-            margin-top: 10px;
+            flex-wrap: wrap;
+            gap: 8px 14px;
+            margin-top: 24px;
             font-size: 11pt;
             line-height: 1.4;
         }
 
-        .c-label + .metric-line {
-            margin-top: 18px;
-        }
-
-        .metric-k {
+        .contact-label {
+            font-weight: 600;
             color: #475569;
         }
 
-        .metric-v {
+        .contact a {
             color: #0F172A;
-            font-weight: 600;
-            font-variant-numeric: tabular-nums;
+            font-weight: 400;
+            text-decoration: underline;
+            text-decoration-thickness: 1px;
+            text-underline-offset: 4px;
+            text-decoration-color: rgba(15, 23, 42, 0.35);
+            white-space: nowrap;
         }
 
-        .c-meta {
-            font-size: 8.5pt;
-            color: #94A3B8;
+        .contact a:hover {
+            text-decoration-color: #0F172A;
         }
 
-        .band-link {
-            align-self: flex-start;
-            margin-top: 60px;
-        }
-
-        .p2-foot {
-            padding-top: 60px;
-            font-size: 8.5pt;
-            color: #94A3B8;
-        }
-
-        @media (max-width: 900px) {
-            .card-row { grid-template-columns: repeat(2, 1fr); }
-        }
-
-        @media (max-width: 800px) {
-            header { flex-direction: column; align-items: flex-start; gap: 20px; }
+        .contact a:focus-visible {
+            outline: 2px solid #0F172A;
+            outline-offset: 4px;
+            border-radius: 2px;
         }
 
         @media (max-width: 640px) {
-            .poster { padding: 36px 24px; }
-            /* Original phone chrome was 461.78125px; the stacked header
-               now extends 82.9375px below the logo. Offset centering by
-               that so the logo-to-headline gap matches the original page. */
-            main {
-                margin-top: max(0px, calc((100vh - 461.78125px) / 2 - 82.9375px));
-                margin-bottom: 0;
+            body {
+                padding: 36px 24px 12vh;
             }
-            .card-row { display: block; }
-            .card,
-            .card + .card {
-                border-left: none;
-                padding: 20px 0;
-                border-top: 1px solid #E2E8F0;
-            }
-            .card + .card::before { content: none; }
-            .card-row .card:first-child { border-top: none; }
-            .band-link { margin-top: 36px; }
-            .p2-foot { padding-top: 36px; }
-            .c-ret { font-size: 17pt; }
-        }
 
-        @media (max-width: 600px) {
-            .scroll-cue,
-            .scroll-cue:visited,
-            .scroll-cue:hover,
-            .scroll-cue:active {
-                display: none;
+            .brand-mark {
+                width: 36px;
+                height: 36px;
+            }
+
+            .brand-name {
+                font-size: 14pt;
+                letter-spacing: 3px;
+                margin-right: -3px;
+            }
+
+            .contact {
+                margin-top: 20px;
             }
         }
     </style>
 </head>
 <body>
-
-    <section class="poster">
-        <header>
-            <div class="brand-logo">
-                <!-- Custom Geometric Atlas Monogram SVG (Pure Charcoal) -->
-                <svg class="brand-mark" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <line x1="4" y1="32" x2="36" y2="32" stroke="#0F172A" stroke-width="2.5" stroke-linecap="round"/>
-                    <path d="M20 6L32 32H8L20 6Z" stroke="#0F172A" stroke-width="2.5" stroke-linejoin="round"/>
-                    <circle cx="20" cy="22" r="2.5" fill="#0F172A"/>
-                </svg>
-                <span class="brand-name">
-                    <span class="brand-name-atlas">ATLAS</span><span class="brand-name-wealth">WEA<span class="brand-slash">\</span>TH</span>
-                </span>
-            </div>
-            <nav class="nav-links" aria-label="Primary">
-                <a href="https://strategy.atlaswealth.cc" class="nav-link">Research Repository & Portal →</a>
-                <a href="mailto:investors@atlaswealth.cc" class="nav-link partner-btn">Partner inquiries →</a>
-            </nav>
-        </header>
-
-        <main>
-            <div class="headline">
-                Long-term capital allocation through high-quality asset ownership and systematic risk architecture.
-            </div>
-            <div class="sub-headline">
-                Atlas manages private capital focused on multi-decade purchasing power expansion, rigorous business valuation heuristics, and rules-based derivative hedging.
-            </div>
-            <a class="scroll-cue" href="#performance" aria-label="Portfolio performance">↓</a>
-        </main>
-    </section>
-
-    <section class="poster two" id="performance">
-        <div class="p2-intro">
-            <h2 class="headline">Portfolio performance.</h2>
-            <p class="sub-headline">Dividends included.</p>
+    <main>
+        <div class="brand">
+            <svg class="brand-mark" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <line x1="4" y1="32" x2="36" y2="32" stroke="#0F172A" stroke-width="2.5" stroke-linecap="round"/>
+                <path d="M20 6L32 32H8L20 6Z" stroke="#0F172A" stroke-width="2.5" stroke-linejoin="round"/>
+                <circle cx="20" cy="22" r="2.5" fill="#0F172A"/>
+            </svg>
+            <h1 class="brand-name">
+                <span class="brand-name-atlas" aria-hidden="true">ATLAS</span><span class="brand-name-wealth" aria-hidden="true">WEA<span class="brand-slash">\</span>TH</span>
+                <span class="sr-only">Atlas Wealth</span>
+            </h1>
         </div>
-        <div id="cards">
-            <noscript><p class="c-meta">Enable JavaScript to load portfolio performance.</p></noscript>
-        </div>
-        <a class="nav-link band-link" href="https://strategy.atlaswealth.cc">See the strategies behind these portfolios →</a>
-        <p class="p2-foot" id="as-of">Past performance is not indicative of future results.</p>
-    </section>
-
-    <footer>
-        <nav class="nav-links" aria-label="Footer">
-            <a href="https://strategy.atlaswealth.cc" class="nav-link">Research Repository & Portal →</a>
-            <a href="mailto:investors@atlaswealth.cc" class="nav-link contact-link">Partner Inquiries</a>
-        </nav>
-        <div class="copyright">
-            © Atlas Wealth
-        </div>
-    </footer>
-
-    <script>
-        function el(tag, className, text) {
-            var node = document.createElement(tag);
-            if (className) node.className = className;
-            if (text != null) node.textContent = text;
-            return node;
-        }
-
-        var MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-
-        function formatAsOf(iso) {
-            var parts = String(iso).split('-');
-            var month = MONTHS[Number(parts[1]) - 1] || '';
-            return month + ' ' + Number(parts[2]) + ', ' + parts[0];
-        }
-
-        function renderAsOf(iso) {
-            var node = document.getElementById('as-of');
-            if (!node || !iso) return;
-            node.textContent = 'As of ' + formatAsOf(iso) + ' close · Past performance is not indicative of future results.';
-        }
-
-        function formatTotal(value) {
-            var n = Number(value);
-            var digits = Math.abs(n).toFixed(1) + '%';
-            if (n > 0) return '+' + digits;
-            if (n < 0) return '-' + digits;
-            return digits;
-        }
-
-        function metricLine(label, value) {
-            var line = el('div', 'metric-line');
-            line.appendChild(el('span', 'metric-k', label));
-            line.appendChild(el('span', 'metric-v', value));
-            return line;
-        }
-
-        function appendMetrics(parent, portfolio) {
-            parent.appendChild(el('div', 'c-ret', formatTotal(portfolio.total_return_pct)));
-            parent.appendChild(el('div', 'c-label', 'Since inception'));
-            parent.appendChild(metricLine('Annualized', formatTotal(portfolio.cagr_pct)));
-            parent.appendChild(metricLine('YTD', formatTotal(portfolio.ytd_pct)));
-        }
-
-        function cardNode(portfolio) {
-            var card = el('a', 'card');
-            card.href = 'portfolio.html?id=' + encodeURIComponent(portfolio.id);
-            card.appendChild(el('div', 'c-name', portfolio.name));
-            appendMetrics(card, portfolio);
-            return card;
-        }
-
-        var books = [];
-        var drawnColumns = 0;
-
-        function columnCount() {
-            if (window.matchMedia('(max-width: 640px)').matches) return 1;
-            if (window.matchMedia('(max-width: 900px)').matches) return 2;
-            return 3;
-        }
-
-        function renderSequence(portfolios) {
-            var count = columnCount();
-            drawnColumns = count;
-            var root = document.getElementById('cards');
-            root.replaceChildren();
-            for (var i = 0; i < portfolios.length; i += count) {
-                var row = el('div', 'card-row');
-                portfolios.slice(i, i + count).forEach(function (portfolio) {
-                    row.appendChild(cardNode(portfolio));
-                });
-                root.appendChild(row);
-            }
-        }
-
-        window.addEventListener('resize', function () {
-            if (!books.length || columnCount() === drawnColumns) return;
-            renderSequence(books);
-        });
-
-        fetch('data/portfolios.json')
-            .then(function (response) {
-                if (!response.ok) throw new Error('status');
-                return response.json();
-            })
-            .then(function (data) {
-                books = data.portfolios || [];
-                renderSequence(books);
-                renderAsOf(data.as_of);
-            })
-            .catch(function () {
-                var root = document.getElementById('cards');
-                root.replaceChildren(el('p', 'c-meta', 'Portfolio performance could not be loaded.'));
-            });
-    </script>
-
+        <p class="contact">
+            <span class="contact-label">Contact</span>
+            <a href="mailto:investors@atlaswealth.cc">investors@atlaswealth.cc</a>
+        </p>
+    </main>
 </body>
 </html>
